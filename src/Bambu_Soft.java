@@ -1,13 +1,17 @@
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalButtonUI;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
+import javax.swing.table.JTableHeader;
+import utilidades.EncabezadoTabla;
 
 
 
@@ -26,11 +30,15 @@ public class Bambu_Soft extends javax.swing.JFrame {
     
     public Bambu_Soft() {
         UIManager.put("ToggleButton.select", Color.WHITE);
+        UIManager.put("Button.select", Color.WHITE);
         initComponents();
         setVisible(true);
         setExtendedState(MAXIMIZED_BOTH);
         btnInicio.setSelected(true);
         btnInicio.setEnabled(false);
+        JTableHeader header=TableCarrito.getTableHeader();
+        header.setDefaultRenderer(new EncabezadoTabla());
+        TableCarrito.setTableHeader(header);
     }
 
     /**
@@ -42,6 +50,65 @@ public class Bambu_Soft extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        panelVentas = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jButton22 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jButton23 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        jButton24 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableCarrito = new javax.swing.JTable();
+        panelInicio = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnVentas = new javax.swing.JToggleButton();
         btnStats = new javax.swing.JToggleButton();
@@ -49,19 +116,329 @@ public class Bambu_Soft extends javax.swing.JFrame {
         btnEmpleados = new javax.swing.JToggleButton();
         btnAbout = new javax.swing.JToggleButton();
         btnInicio = new javax.swing.JToggleButton();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnLogout = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(3);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(128, 16, 148));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.CardLayout());
+
+        panelVentas.setBackground(new java.awt.Color(255, 255, 255));
+        panelVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Pago");
+        panelVentas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, -1, -1));
+
+        jSeparator4.setForeground(new java.awt.Color(81, 0, 126));
+        panelVentas.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 360, 30));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Pago del cliente");
+        panelVentas.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, -1));
+
+        jButton22.setForeground(new java.awt.Color(0, 0, 0));
+        jButton22.setText("Buscar");
+        panelVentas.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Articulo");
+        panelVentas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Codigo de barras");
+        panelVentas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Total: $");
+        panelVentas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
+
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Precio");
+        panelVentas.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+
+        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
+        panelVentas.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 450, 30));
+
+        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        panelVentas.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 210, 30));
+
+        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+        panelVentas.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 210, 30));
+
+        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+        panelVentas.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 180, 30));
+
+        jSeparator5.setForeground(new java.awt.Color(81, 0, 126));
+        panelVentas.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 1120, 10));
+
+        jButton23.setForeground(new java.awt.Color(0, 0, 0));
+        jButton23.setText("Pagar");
+        panelVentas.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, -1, -1));
+
+        jSeparator6.setForeground(new java.awt.Color(81, 0, 126));
+        panelVentas.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 360, 20));
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Carrito");
+        panelVentas.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+        panelVentas.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
+
+        jToggleButton1.setText("Pago con trarjeta");
+        panelVentas.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 200, 140, -1));
+
+        jToggleButton2.setText("Pago en efectivo");
+        panelVentas.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 170, 140, -1));
+
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Cantidad");
+        panelVentas.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        jSeparator7.setForeground(new java.awt.Color(81, 0, 126));
+        panelVentas.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 730, 10));
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Producto");
+        panelVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jButton24.setForeground(new java.awt.Color(0, 0, 0));
+        jButton24.setText("Añadir al carrito");
+        panelVentas.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
+        TableCarrito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Articulo", "Precio", "Cantidad", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableCarrito.setGridColor(new java.awt.Color(140, 61, 168));
+        TableCarrito.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        TableCarrito.getTableHeader().setReorderingAllowed(false);
+        TableCarrito.getTableHeader().setBackground(new java.awt.Color(140,61,168));
+        TableCarrito.getTableHeader().setBorder(BorderFactory.createLineBorder(new java.awt.Color(255,255,255), 1));
+        jScrollPane1.setViewportView(TableCarrito);
+        if (TableCarrito.getColumnModel().getColumnCount() > 0) {
+            TableCarrito.getColumnModel().getColumn(0).setResizable(false);
+            TableCarrito.getColumnModel().getColumn(1).setResizable(false);
+            TableCarrito.getColumnModel().getColumn(2).setResizable(false);
+            TableCarrito.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        panelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 1100, 290));
+
+        jPanel3.add(panelVentas, "card3");
+
+        panelInicio.setBackground(new java.awt.Color(255, 255, 255));
+        panelInicio.setLayout(null);
+
+        jButton1.setText("jButton1");
+        panelInicio.add(jButton1);
+        jButton1.setBounds(200, 70, 130, 130);
+
+        jSeparator1.setForeground(new java.awt.Color(81, 0, 126));
+        panelInicio.add(jSeparator1);
+        jSeparator1.setBounds(30, 470, 1110, 40);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Producto agotado");
+        panelInicio.add(jLabel3);
+        jLabel3.setBounds(40, 430, 350, 32);
+
+        jButton2.setText("jButton1");
+        panelInicio.add(jButton2);
+        jButton2.setBounds(360, 70, 130, 130);
+
+        jButton3.setText("jButton1");
+        panelInicio.add(jButton3);
+        jButton3.setBounds(680, 70, 130, 130);
+
+        jButton4.setText("jButton1");
+        panelInicio.add(jButton4);
+        jButton4.setBounds(40, 70, 130, 130);
+
+        jButton5.setText("jButton1");
+        panelInicio.add(jButton5);
+        jButton5.setBounds(840, 70, 130, 130);
+
+        jButton6.setText("jButton1");
+        panelInicio.add(jButton6);
+        jButton6.setBounds(1000, 70, 130, 130);
+
+        jButton7.setText("jButton1");
+        panelInicio.add(jButton7);
+        jButton7.setBounds(520, 70, 130, 130);
+
+        jSeparator2.setForeground(new java.awt.Color(81, 0, 126));
+        panelInicio.add(jSeparator2);
+        jSeparator2.setBounds(30, 50, 1110, 20);
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Lo más vendido");
+        panelInicio.add(jLabel4);
+        jLabel4.setBounds(40, 10, 184, 32);
+
+        jButton8.setText("jButton1");
+        panelInicio.add(jButton8);
+        jButton8.setBounds(40, 280, 130, 130);
+
+        jButton9.setText("jButton1");
+        panelInicio.add(jButton9);
+        jButton9.setBounds(200, 280, 130, 130);
+
+        jButton10.setText("jButton1");
+        panelInicio.add(jButton10);
+        jButton10.setBounds(360, 280, 130, 130);
+
+        jButton11.setText("jButton1");
+        panelInicio.add(jButton11);
+        jButton11.setBounds(520, 280, 130, 130);
+
+        jButton12.setText("jButton1");
+        panelInicio.add(jButton12);
+        jButton12.setBounds(680, 280, 130, 130);
+
+        jButton13.setText("jButton1");
+        panelInicio.add(jButton13);
+        jButton13.setBounds(840, 280, 130, 130);
+
+        jButton14.setText("jButton1");
+        panelInicio.add(jButton14);
+        jButton14.setBounds(1000, 280, 130, 130);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Producto a punto de agotarse");
+        panelInicio.add(jLabel5);
+        jLabel5.setBounds(40, 220, 350, 32);
+
+        jSeparator3.setForeground(new java.awt.Color(81, 0, 126));
+        panelInicio.add(jSeparator3);
+        jSeparator3.setBounds(30, 260, 1110, 40);
+
+        jButton15.setText("jButton1");
+        panelInicio.add(jButton15);
+        jButton15.setBounds(40, 490, 130, 130);
+
+        jButton16.setText("jButton1");
+        panelInicio.add(jButton16);
+        jButton16.setBounds(200, 490, 130, 130);
+
+        jButton17.setText("jButton1");
+        panelInicio.add(jButton17);
+        jButton17.setBounds(360, 490, 130, 130);
+
+        jButton18.setText("jButton1");
+        panelInicio.add(jButton18);
+        jButton18.setBounds(520, 490, 130, 130);
+
+        jButton19.setText("jButton1");
+        panelInicio.add(jButton19);
+        jButton19.setBounds(680, 490, 130, 130);
+
+        jButton20.setText("jButton1");
+        panelInicio.add(jButton20);
+        jButton20.setBounds(840, 490, 130, 130);
+
+        jButton21.setText("jButton1");
+        panelInicio.add(jButton21);
+        jButton21.setBounds(1000, 490, 130, 130);
+
+        jPanel3.add(panelInicio, "card2");
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 1180, 750));
+
+        jPanel1.setBackground(new java.awt.Color(140, 61, 168));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Usuario");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
+
+        btnLogout.setBackground(new java.awt.Color(102, 0, 102));
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Cerrar sesión");
+        btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnLogout.setBorderPainted(false);
+        btnLogout.setFocusPainted(false);
+        btnLogout.setOpaque(false);
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLogoutMousePressed(evt);
+            }
+        });
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 30, 100, 30));
+
+        Image logo=new ImageIcon(getClass().getResource("/img/logo.jpg")).getImage();
+        logo=logo.getScaledInstance(183,60,java.awt.Image.SCALE_SMOOTH);
+        ImageIcon logo2=new ImageIcon(logo);
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(logo2);
+        jLabel1.setText("LOGO");
+        jLabel1.setOpaque(true);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 0, 190, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1560, 60));
+
+        jPanel2.setBackground(new java.awt.Color(28, 177, 217));
+        jPanel2.setLayout(null);
 
         btnVentas.setBackground(new java.awt.Color(0, 0, 0));
         btnVentas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -83,13 +460,17 @@ public class Bambu_Soft extends javax.swing.JFrame {
         public void mouseExited(java.awt.event.MouseEvent evt) {
             btnVentasMouseExited(evt);
         }
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            btnVentasMousePressed(evt);
+        }
     });
     btnVentas.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnVentasActionPerformed(evt);
         }
     });
-    jPanel2.add(btnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 190, 90));
+    jPanel2.add(btnVentas);
+    btnVentas.setBounds(0, 90, 190, 90);
 
     btnStats.setBackground(new java.awt.Color(0, 0, 0));
     btnStats.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -112,13 +493,17 @@ btnStats.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseExited(java.awt.event.MouseEvent evt) {
         btnStatsMouseExited(evt);
     }
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        btnStatsMousePressed(evt);
+    }
     });
     btnStats.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnStatsActionPerformed(evt);
         }
     });
-    jPanel2.add(btnStats, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 190, 90));
+    jPanel2.add(btnStats);
+    btnStats.setBounds(0, 180, 190, 90);
 
     btnInventario.setBackground(new java.awt.Color(0, 0, 0));
     btnInventario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -140,13 +525,17 @@ btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseExited(java.awt.event.MouseEvent evt) {
         btnInventarioMouseExited(evt);
     }
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        btnInventarioMousePressed(evt);
+    }
     });
     btnInventario.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnInventarioActionPerformed(evt);
         }
     });
-    jPanel2.add(btnInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 190, 90));
+    jPanel2.add(btnInventario);
+    btnInventario.setBounds(0, 270, 190, 90);
 
     btnEmpleados.setBackground(new java.awt.Color(0, 0, 0));
     btnEmpleados.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -168,13 +557,17 @@ btnEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseExited(java.awt.event.MouseEvent evt) {
         btnEmpleadosMouseExited(evt);
     }
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        btnEmpleadosMousePressed(evt);
+    }
     });
     btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnEmpleadosActionPerformed(evt);
         }
     });
-    jPanel2.add(btnEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 190, 90));
+    jPanel2.add(btnEmpleados);
+    btnEmpleados.setBounds(0, 360, 190, 90);
 
     btnAbout.setBackground(new java.awt.Color(0, 0, 0));
     btnAbout.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -196,13 +589,17 @@ btnAbout.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseExited(java.awt.event.MouseEvent evt) {
         btnAboutMouseExited(evt);
     }
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        btnAboutMousePressed(evt);
+    }
     });
     btnAbout.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnAboutActionPerformed(evt);
         }
     });
-    jPanel2.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 190, 90));
+    jPanel2.add(btnAbout);
+    btnAbout.setBounds(0, 560, 190, 90);
 
     btnInicio.setBackground(new java.awt.Color(0, 0, 0));
     btnInicio.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -227,59 +624,19 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     public void mouseExited(java.awt.event.MouseEvent evt) {
         btnInicioMouseExited(evt);
     }
+    public void mousePressed(java.awt.event.MouseEvent evt) {
+        btnInicioMousePressed(evt);
+    }
     });
     btnInicio.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnInicioActionPerformed(evt);
         }
     });
-    jPanel2.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 90));
+    jPanel2.add(btnInicio);
+    btnInicio.setBounds(0, 0, 190, 90);
 
-    getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 660));
-
-    jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-    jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-    getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 1180, 750));
-
-    jPanel1.setBackground(new java.awt.Color(102, 0, 102));
-    jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-    jLabel1.setText("LOGO");
-    jLabel1.setOpaque(true);
-    jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 0, 140, 60));
-
-    jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel2.setText("Usuario");
-    jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 10, -1, -1));
-
-    btnLogout.setBackground(new java.awt.Color(102, 0, 102));
-    btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-    btnLogout.setText("Cerrar sesión");
-    btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-    btnLogout.setBorderPainted(false);
-    btnLogout.setFocusPainted(false);
-    btnLogout.setOpaque(false);
-    btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            btnLogoutMouseEntered(evt);
-        }
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            btnLogoutMouseExited(evt);
-        }
-    });
-    btnLogout.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnLogoutActionPerformed(evt);
-        }
-    });
-    jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 30, 100, 30));
-
-    jLabel3.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-    jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel3.setText("Inicio");
-    jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
-
-    getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1560, 60));
+    getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 680));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -386,6 +743,50 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
+        btnInicio.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnInicioMousePressed
+
+    private void btnVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMousePressed
+        btnVentas.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnVentasMousePressed
+
+    private void btnStatsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatsMousePressed
+        btnStats.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnStatsMousePressed
+
+    private void btnInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMousePressed
+        btnInventario.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnInventarioMousePressed
+
+    private void btnEmpleadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMousePressed
+        btnEmpleados.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnEmpleadosMousePressed
+
+    private void btnAboutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMousePressed
+        btnAbout.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnAboutMousePressed
+
+    private void btnLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMousePressed
+        btnLogout.setForeground(java.awt.Color.BLACK);
+    }//GEN-LAST:event_btnLogoutMousePressed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
     private void changeButtons(String s){
         setButtonsNormal();
         switch(s){
@@ -480,6 +881,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TableCarrito;
     private javax.swing.JToggleButton btnAbout;
     private javax.swing.JToggleButton btnEmpleados;
     private javax.swing.JToggleButton btnInicio;
@@ -487,11 +889,63 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnLogout;
     private javax.swing.JToggleButton btnStats;
     private javax.swing.JToggleButton btnVentas;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JPanel panelInicio;
+    private javax.swing.JPanel panelVentas;
     // End of variables declaration//GEN-END:variables
 }
