@@ -39,6 +39,7 @@ public class Bambu_Soft extends javax.swing.JFrame {
         JTableHeader header=TableCarrito.getTableHeader();
         header.setDefaultRenderer(new EncabezadoTabla());
         TableCarrito.setTableHeader(header);
+        
     }
 
     /**
@@ -55,28 +56,28 @@ public class Bambu_Soft extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jButton22 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtPayment = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jButton23 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
         jLabel13 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
-        jButton24 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableCarrito = new javax.swing.JTable();
+        txtBarCode = new javax.swing.JTextField();
+        txtArticle = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnPagar = new javax.swing.JButton();
+        btnAddToCart = new javax.swing.JButton();
+        btnCash = new javax.swing.JToggleButton();
+        btnCard = new javax.swing.JToggleButton();
         panelInicio = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -139,10 +140,6 @@ public class Bambu_Soft extends javax.swing.JFrame {
         jLabel7.setText("Pago del cliente");
         panelVentas.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, -1));
 
-        jButton22.setForeground(new java.awt.Color(0, 0, 0));
-        jButton22.setText("Buscar");
-        panelVentas.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
-
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Articulo");
         panelVentas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
@@ -160,66 +157,36 @@ public class Bambu_Soft extends javax.swing.JFrame {
         jLabel11.setText("Precio");
         panelVentas.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
-        panelVentas.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 450, 30));
-
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+        txtPayment.setForeground(new java.awt.Color(0, 0, 0));
+        txtPayment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtPayment.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPaymentFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPaymentFocusLost(evt);
             }
         });
-        panelVentas.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 210, 30));
-
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+        txtPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPaymentMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtPaymentMouseExited(evt);
             }
         });
-        panelVentas.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 210, 30));
-
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        panelVentas.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 180, 30));
+        panelVentas.add(txtPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 340, 30));
 
         jSeparator5.setForeground(new java.awt.Color(81, 0, 126));
         panelVentas.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 1120, 10));
 
-        jButton23.setForeground(new java.awt.Color(0, 0, 0));
-        jButton23.setText("Pagar");
-        panelVentas.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, -1, -1));
-
         jSeparator6.setForeground(new java.awt.Color(81, 0, 126));
-        panelVentas.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 360, 20));
+        panelVentas.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 360, 10));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Carrito");
         panelVentas.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
-
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
-            }
-        });
-        panelVentas.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
-
-        jToggleButton1.setText("Pago con trarjeta");
-        panelVentas.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 200, 140, -1));
-
-        jToggleButton2.setText("Pago en efectivo");
-        panelVentas.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 170, 140, -1));
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Cantidad");
@@ -232,10 +199,6 @@ public class Bambu_Soft extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Producto");
         panelVentas.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-        jButton24.setForeground(new java.awt.Color(0, 0, 0));
-        jButton24.setText("Añadir al carrito");
-        panelVentas.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         TableCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +233,201 @@ public class Bambu_Soft extends javax.swing.JFrame {
         }
 
         panelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 1100, 290));
+
+        txtBarCode.setForeground(new java.awt.Color(0, 0, 0));
+        txtBarCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtBarCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBarCodeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBarCodeFocusLost(evt);
+            }
+        });
+        txtBarCode.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtBarCodeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtBarCodeMouseExited(evt);
+            }
+        });
+        panelVentas.add(txtBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 450, 30));
+
+        txtArticle.setForeground(new java.awt.Color(0, 0, 0));
+        txtArticle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtArticle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtArticleFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtArticleFocusLost(evt);
+            }
+        });
+        txtArticle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtArticleMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtArticleMouseExited(evt);
+            }
+        });
+        panelVentas.add(txtArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 30));
+
+        txtPrice.setForeground(new java.awt.Color(0, 0, 0));
+        txtPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtPrice.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPriceFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPriceFocusLost(evt);
+            }
+        });
+        txtPrice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPriceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtPriceMouseExited(evt);
+            }
+        });
+        panelVentas.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 210, 30));
+
+        txtAmount.setForeground(new java.awt.Color(0, 0, 0));
+        txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtAmount.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAmountFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAmountFocusLost(evt);
+            }
+        });
+        txtAmount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtAmountMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtAmountMouseExited(evt);
+            }
+        });
+        panelVentas.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 210, 30));
+
+        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
+        btnSearch.setForeground(new java.awt.Color(0, 0, 0));
+        btnSearch.setText("Buscar");
+        btnSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnSearch.setFocusPainted(false);
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSearchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSearchMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSearchMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnSearchMouseReleased(evt);
+            }
+        });
+        panelVentas.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 80, 30));
+
+        btnPagar.setBackground(new java.awt.Color(255, 255, 255));
+        btnPagar.setForeground(new java.awt.Color(0, 0, 0));
+        btnPagar.setText("Pagar");
+        btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnPagar.setFocusPainted(false);
+        btnPagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPagarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPagarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnPagarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnPagarMouseReleased(evt);
+            }
+        });
+        panelVentas.add(btnPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 230, 70, 30));
+
+        btnAddToCart.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddToCart.setForeground(new java.awt.Color(0, 0, 0));
+        btnAddToCart.setText("Añadir al carrito");
+        btnAddToCart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAddToCart.setFocusPainted(false);
+        btnAddToCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddToCartMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddToCartMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAddToCartMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAddToCartMouseReleased(evt);
+            }
+        });
+        panelVentas.add(btnAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 130, 30));
+
+        btnCash.setBackground(new java.awt.Color(140, 61, 168));
+        btnCash.setForeground(new java.awt.Color(255, 255, 255));
+        btnCash.setText("Efectivo");
+        btnCash.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnCash.setFocusPainted(false);
+        btnCash.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCashMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCashMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCashMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCashMouseReleased(evt);
+            }
+        });
+        btnCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCashActionPerformed(evt);
+            }
+        });
+        panelVentas.add(btnCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 230, 130, 30));
+
+        btnCard.setBackground(new java.awt.Color(140, 61, 168));
+        btnCard.setForeground(new java.awt.Color(0, 0, 0));
+        btnCard.setSelected(true);
+        btnCard.setText("Tarjeta");
+        btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnCard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCardMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCardMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCardMouseReleased(evt);
+            }
+        });
+        btnCard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCardActionPerformed(evt);
+            }
+        });
+        panelVentas.add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 230, 130, 30));
 
         jPanel3.add(panelVentas, "card3");
 
@@ -772,21 +930,220 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnLogout.setForeground(java.awt.Color.BLACK);
     }//GEN-LAST:event_btnLogoutMousePressed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    private void txtPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPaymentMouseEntered
+        txtPayment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPaymentMouseEntered
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    private void txtPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPaymentMouseExited
+        if(!(txtPayment.isFocusOwner()))
+            txtPayment.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPaymentMouseExited
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    private void txtPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaymentFocusGained
+        txtPayment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPaymentFocusGained
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    private void txtPaymentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPaymentFocusLost
+        txtPayment.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPaymentFocusLost
+
+    private void txtBarCodeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarCodeFocusGained
+        txtBarCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtBarCodeFocusGained
+
+    private void txtBarCodeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarCodeFocusLost
+        txtBarCode.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBarCodeFocusLost
+
+    private void txtBarCodeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeMouseEntered
+        txtBarCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtBarCodeMouseEntered
+
+    private void txtBarCodeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeMouseExited
+        if(!(txtBarCode.isFocusOwner()))
+            txtBarCode.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBarCodeMouseExited
+
+    private void txtArticleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtArticleFocusGained
+        txtArticle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtArticleFocusGained
+
+    private void txtArticleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtArticleFocusLost
+        txtArticle.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtArticleFocusLost
+
+    private void txtArticleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticleMouseEntered
+        txtArticle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtArticleMouseEntered
+
+    private void txtArticleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticleMouseExited
+        if(!(txtArticle.isFocusOwner()))
+            txtArticle.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtArticleMouseExited
+
+    private void txtPriceFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusGained
+        txtPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPriceFocusGained
+
+    private void txtPriceFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPriceFocusLost
+        txtPrice.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPriceFocusLost
+
+    private void txtPriceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPriceMouseEntered
+        txtPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPriceMouseEntered
+
+    private void txtPriceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPriceMouseExited
+        if(!(txtPrice.isFocusOwner()))
+            txtPrice.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPriceMouseExited
+
+    private void txtAmountFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAmountFocusGained
+        txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtAmountFocusGained
+
+    private void txtAmountFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAmountFocusLost
+        txtAmount.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtAmountFocusLost
+
+    private void txtAmountMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseEntered
+        txtAmount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtAmountMouseEntered
+
+    private void txtAmountMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAmountMouseExited
+        if(!(txtAmount.isFocusOwner()))
+            txtAmount.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtAmountMouseExited
+
+    private void btnSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseEntered
+        btnSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnSearchMouseEntered
+
+    private void btnSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseExited
+        btnSearch.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnSearchMouseExited
+
+    private void btnSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMousePressed
+        btnSearch.setFont(new java.awt.Font("Dialog", 1, 11));
+        btnSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+    }//GEN-LAST:event_btnSearchMousePressed
+
+    private void btnSearchMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseReleased
+        btnSearch.setFont(new java.awt.Font("Dialog", 1, 12));
+        btnSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnSearchMouseReleased
+
+    private void btnPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseEntered
+        btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnPagarMouseEntered
+
+    private void btnPagarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseExited
+        btnPagar.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnPagarMouseExited
+
+    private void btnPagarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMousePressed
+        btnPagar.setFont(new java.awt.Font("Dialog", 1, 11));
+        btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+    }//GEN-LAST:event_btnPagarMousePressed
+
+    private void btnPagarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseReleased
+        btnPagar.setFont(new java.awt.Font("Dialog", 1, 12));
+        btnPagar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnPagarMouseReleased
+
+    private void btnAddToCartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddToCartMouseEntered
+        btnAddToCart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnAddToCartMouseEntered
+
+    private void btnAddToCartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddToCartMouseExited
+        btnAddToCart.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAddToCartMouseExited
+
+    private void btnAddToCartMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddToCartMousePressed
+        btnAddToCart.setFont(new java.awt.Font("Dialog", 1, 11));
+        btnAddToCart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+    }//GEN-LAST:event_btnAddToCartMousePressed
+
+    private void btnAddToCartMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddToCartMouseReleased
+        btnAddToCart.setFont(new java.awt.Font("Dialog", 1, 12));
+        btnAddToCart.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnAddToCartMouseReleased
+
+    private void btnCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCashActionPerformed
+        if(btnCard.isSelected()){
+            btnCard.setSelected(false);
+        }
+        else{
+            btnCard.setSelected(true);
+        }
+        if(btnCash.isSelected()){
+            btnCard.setForeground(Color.WHITE);
+            btnCash.setForeground(Color.BLACK);
+        }
+        else{
+            btnCard.setForeground(Color.BLACK);
+            btnCash.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_btnCashActionPerformed
+
+    private void btnCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardActionPerformed
+        if(btnCash.isSelected()){
+            btnCash.setSelected(false);
+            //btnCash.setForeground(Color.WHITE);
+        }
+        else{
+            btnCash.setSelected(true);
+            //btnCash.setForeground(Color.BLACK);
+        }
+        if(btnCard.isSelected()){
+            btnCard.setForeground(Color.BLACK);
+            btnCash.setForeground(Color.WHITE);
+        }
+        else{
+            btnCard.setForeground(Color.WHITE);
+            btnCash.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_btnCardActionPerformed
+
+    private void btnCashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseEntered
+        btnCash.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnCashMouseEntered
+
+    private void btnCashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseExited
+        btnCash.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnCashMouseExited
+
+    private void btnCashMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMousePressed
+        btnCash.setFont(new java.awt.Font("Dialog", 1, 11));
+        btnCash.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+        if(!btnCash.isSelected())
+            btnCash.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnCashMousePressed
+
+    private void btnCashMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseReleased
+        btnCash.setFont(new java.awt.Font("Dialog", 1, 12));
+        btnCash.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnCashMouseReleased
+
+    private void btnCardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMouseEntered
+        btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnCardMouseEntered
+
+    private void btnCardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMouseExited
+        btnCard.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnCardMouseExited
+
+    private void btnCardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMousePressed
+        btnCard.setFont(new java.awt.Font("Dialog", 1, 11));
+        btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+        if(!btnCard.isSelected())
+            btnCard.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnCardMousePressed
+
+    private void btnCardMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMouseReleased
+        btnCard.setFont(new java.awt.Font("Dialog", 1, 12));
+        btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnCardMouseReleased
     private void changeButtons(String s){
         setButtonsNormal();
         switch(s){
@@ -883,10 +1240,15 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableCarrito;
     private javax.swing.JToggleButton btnAbout;
+    private javax.swing.JButton btnAddToCart;
+    private javax.swing.JToggleButton btnCard;
+    private javax.swing.JToggleButton btnCash;
     private javax.swing.JToggleButton btnEmpleados;
     private javax.swing.JToggleButton btnInicio;
     private javax.swing.JToggleButton btnInventario;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JToggleButton btnStats;
     private javax.swing.JToggleButton btnVentas;
     private javax.swing.JButton jButton1;
@@ -903,9 +1265,6 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -938,14 +1297,12 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelVentas;
+    private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtArticle;
+    private javax.swing.JTextField txtBarCode;
+    private javax.swing.JTextField txtPayment;
+    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 }
