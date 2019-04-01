@@ -40,7 +40,15 @@ CardLayout cardLayout;
         JTableHeader header=TableCarrito.getTableHeader();
         header.setDefaultRenderer(new EncabezadoTabla());
         TableCarrito.setTableHeader(header);
-        cardLayout = (CardLayout) jPanel3.getLayout();
+        header=null;
+        header=TableVentas.getTableHeader();
+        header.setDefaultRenderer(new EncabezadoTabla());
+        TableVentas.setTableHeader(header);
+        header=null;
+        header=TableInventario.getTableHeader();
+        header.setDefaultRenderer(new EncabezadoTabla());
+        TableInventario.setTableHeader(header);
+        cardLayout = (CardLayout) panelContent.getLayout();
     }
 
     /**
@@ -52,7 +60,7 @@ CardLayout cardLayout;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        panelContent = new javax.swing.JPanel();
         panelInicio = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -108,14 +116,58 @@ CardLayout cardLayout;
         btnCash = new javax.swing.JToggleButton();
         btnCard = new javax.swing.JToggleButton();
         panelStats = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
+        txtSearchVentas = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        btnBuscarVentas = new javax.swing.JButton();
+        jSeparator13 = new javax.swing.JSeparator();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TableVentas = new javax.swing.JTable();
+        jLabel28 = new javax.swing.JLabel();
+        jSeparator14 = new javax.swing.JSeparator();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        btnMostrarEfectivoVentas = new javax.swing.JToggleButton();
+        jLabel32 = new javax.swing.JLabel();
+        btnMostrarTarjetaVentas = new javax.swing.JToggleButton();
+        btnMostrarTodoVentas = new javax.swing.JToggleButton();
         panelInventario = new javax.swing.JPanel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel15 = new javax.swing.JLabel();
+        txtBarCodeInventario = new javax.swing.JTextField();
+        btnAddImagenInventario = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        jLabel17 = new javax.swing.JLabel();
+        btnBuscarArticulo = new javax.swing.JToggleButton();
+        btnAñadirArticulo = new javax.swing.JToggleButton();
+        jSeparator10 = new javax.swing.JSeparator();
+        jLabel18 = new javax.swing.JLabel();
+        txtSearchInventario = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        txtArticuloInventario = new javax.swing.JTextField();
+        txtPrecioInventario = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        txtCantidadInventario = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        btnSearchInventario = new javax.swing.JButton();
+        labelImagenInventario = new javax.swing.JLabel();
+        btnBorrarInventario = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableInventario = new javax.swing.JTable();
         panelEmpleados = new javax.swing.JPanel();
         panelAbout = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        panelNav = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelBotones = new javax.swing.JPanel();
         btnVentas = new javax.swing.JToggleButton();
         btnStats = new javax.swing.JToggleButton();
         btnInventario = new javax.swing.JToggleButton();
@@ -127,8 +179,8 @@ CardLayout cardLayout;
         setExtendedState(3);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new java.awt.CardLayout());
+        panelContent.setBackground(new java.awt.Color(255, 255, 255));
+        panelContent.setLayout(new java.awt.CardLayout());
 
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelInicio.setLayout(null);
@@ -247,7 +299,7 @@ CardLayout cardLayout;
         panelInicio.add(jButton21);
         jButton21.setBounds(1000, 490, 130, 130);
 
-        jPanel3.add(panelInicio, "pnlInicio");
+        panelContent.add(panelInicio, "pnlInicio");
 
         panelVentas.setBackground(new java.awt.Color(255, 255, 255));
         panelVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -532,6 +584,7 @@ CardLayout cardLayout;
         btnCard.setSelected(true);
         btnCard.setText("Tarjeta");
         btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnCard.setFocusPainted(false);
         btnCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCardMouseEntered(evt);
@@ -553,32 +606,592 @@ CardLayout cardLayout;
         });
         panelVentas.add(btnCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 230, 130, 30));
 
-        jPanel3.add(panelVentas, "pnlVentas");
+        panelContent.add(panelVentas, "pnlVentas");
 
         panelStats.setBackground(new java.awt.Color(255, 255, 255));
         panelStats.setLayout(null);
-        jPanel3.add(panelStats, "pnlStats");
+
+        jLabel25.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Barra de busqueda");
+        panelStats.add(jLabel25);
+        jLabel25.setBounds(40, 10, 240, 32);
+
+        jSeparator12.setForeground(new java.awt.Color(81, 0, 126));
+        panelStats.add(jSeparator12);
+        jSeparator12.setBounds(30, 50, 1120, 10);
+
+        txtSearchVentas.setForeground(new java.awt.Color(0, 0, 0));
+        txtSearchVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtSearchVentas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearchVentasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearchVentasFocusLost(evt);
+            }
+        });
+        txtSearchVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtSearchVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtSearchVentasMouseExited(evt);
+            }
+        });
+        panelStats.add(txtSearchVentas);
+        txtSearchVentas.setBounds(40, 80, 610, 30);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Mostrar por:");
+        panelStats.add(jLabel26);
+        jLabel26.setBounds(810, 60, 190, 16);
+
+        btnBuscarVentas.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscarVentas.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarVentas.setText("Buscar");
+        btnBuscarVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnBuscarVentas.setFocusPainted(false);
+        btnBuscarVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarVentasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBuscarVentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBuscarVentasMouseReleased(evt);
+            }
+        });
+        panelStats.add(btnBuscarVentas);
+        btnBuscarVentas.setBounds(680, 80, 100, 30);
+
+        jSeparator13.setForeground(new java.awt.Color(81, 0, 126));
+        panelStats.add(jSeparator13);
+        jSeparator13.setBounds(30, 170, 1120, 10);
+
+        jLabel27.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Tabla de ventas");
+        panelStats.add(jLabel27);
+        jLabel27.setBounds(40, 130, 200, 32);
+
+        TableVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Numero de la venta", "Vendedor", "Monto de la venta", "Tipo de pago", "Fecha de la venta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableVentas.setGridColor(new java.awt.Color(140, 61, 168));
+        TableVentas.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        TableVentas.getTableHeader().setReorderingAllowed(false);
+        TableCarrito.getTableHeader().setBackground(new java.awt.Color(140,61,168));
+        TableCarrito.getTableHeader().setBorder(BorderFactory.createLineBorder(new java.awt.Color(255,255,255), 1));
+        jScrollPane3.setViewportView(TableVentas);
+        if (TableVentas.getColumnModel().getColumnCount() > 0) {
+            TableVentas.getColumnModel().getColumn(0).setResizable(false);
+            TableVentas.getColumnModel().getColumn(1).setResizable(false);
+            TableVentas.getColumnModel().getColumn(2).setResizable(false);
+            TableVentas.getColumnModel().getColumn(3).setResizable(false);
+            TableVentas.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        panelStats.add(jScrollPane3);
+        jScrollPane3.setBounds(40, 180, 1100, 230);
+
+        jLabel28.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Ventas del mes: $");
+        panelStats.add(jLabel28);
+        jLabel28.setBounds(40, 550, 530, 47);
+
+        jSeparator14.setForeground(new java.awt.Color(81, 0, 126));
+        panelStats.add(jSeparator14);
+        jSeparator14.setBounds(30, 470, 1120, 10);
+
+        jLabel29.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Ventas generales");
+        panelStats.add(jLabel29);
+        jLabel29.setBounds(40, 430, 200, 32);
+
+        jLabel30.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Ventas del dia: $");
+        panelStats.add(jLabel30);
+        jLabel30.setBounds(40, 480, 560, 47);
+
+        jLabel31.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Ventas de la semana: $");
+        panelStats.add(jLabel31);
+        jLabel31.setBounds(530, 480, 530, 47);
+
+        btnMostrarEfectivoVentas.setBackground(new java.awt.Color(140, 61, 168));
+        btnMostrarEfectivoVentas.setForeground(new java.awt.Color(0, 0, 0));
+        btnMostrarEfectivoVentas.setSelected(true);
+        btnMostrarEfectivoVentas.setText("Efectivo");
+        btnMostrarEfectivoVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnMostrarEfectivoVentas.setFocusPainted(false);
+        btnMostrarEfectivoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMostrarEfectivoVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMostrarEfectivoVentasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMostrarEfectivoVentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnMostrarEfectivoVentasMouseReleased(evt);
+            }
+        });
+        btnMostrarEfectivoVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarEfectivoVentasActionPerformed(evt);
+            }
+        });
+        panelStats.add(btnMostrarEfectivoVentas);
+        btnMostrarEfectivoVentas.setBounds(920, 80, 110, 30);
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Busqueda por vendedor, cantidad de la venta o fecha de la venta");
+        panelStats.add(jLabel32);
+        jLabel32.setBounds(40, 60, 370, 16);
+
+        btnMostrarTarjetaVentas.setBackground(new java.awt.Color(140, 61, 168));
+        btnMostrarTarjetaVentas.setForeground(new java.awt.Color(0, 0, 0));
+        btnMostrarTarjetaVentas.setSelected(true);
+        btnMostrarTarjetaVentas.setText("Tarjeta");
+        btnMostrarTarjetaVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnMostrarTarjetaVentas.setFocusPainted(false);
+        btnMostrarTarjetaVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMostrarTarjetaVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMostrarTarjetaVentasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMostrarTarjetaVentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnMostrarTarjetaVentasMouseReleased(evt);
+            }
+        });
+        btnMostrarTarjetaVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTarjetaVentasActionPerformed(evt);
+            }
+        });
+        panelStats.add(btnMostrarTarjetaVentas);
+        btnMostrarTarjetaVentas.setBounds(1030, 80, 110, 30);
+
+        btnMostrarTodoVentas.setBackground(new java.awt.Color(140, 61, 168));
+        btnMostrarTodoVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrarTodoVentas.setText("Todo");
+        btnMostrarTodoVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnMostrarTodoVentas.setFocusPainted(false);
+        btnMostrarTodoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMostrarTodoVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMostrarTodoVentasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMostrarTodoVentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnMostrarTodoVentasMouseReleased(evt);
+            }
+        });
+        btnMostrarTodoVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTodoVentasActionPerformed(evt);
+            }
+        });
+        panelStats.add(btnMostrarTodoVentas);
+        btnMostrarTodoVentas.setBounds(810, 80, 110, 30);
+
+        panelContent.add(panelStats, "pnlStats");
 
         panelInventario.setBackground(new java.awt.Color(255, 255, 255));
         panelInventario.setLayout(null);
-        jPanel3.add(panelInventario, "pnlInventario");
+
+        jSeparator8.setForeground(new java.awt.Color(81, 0, 126));
+        panelInventario.add(jSeparator8);
+        jSeparator8.setBounds(790, 50, 360, 20);
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Acción");
+        panelInventario.add(jLabel15);
+        jLabel15.setBounds(800, 10, 90, 30);
+
+        txtBarCodeInventario.setForeground(new java.awt.Color(0, 0, 0));
+        txtBarCodeInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtBarCodeInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBarCodeInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBarCodeInventarioFocusLost(evt);
+            }
+        });
+        txtBarCodeInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtBarCodeInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtBarCodeInventarioMouseExited(evt);
+            }
+        });
+        panelInventario.add(txtBarCodeInventario);
+        txtBarCodeInventario.setBounds(400, 200, 260, 30);
+
+        btnAddImagenInventario.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddImagenInventario.setForeground(new java.awt.Color(0, 0, 0));
+        btnAddImagenInventario.setText("Añadir imagen");
+        btnAddImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAddImagenInventario.setFocusPainted(false);
+        btnAddImagenInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddImagenInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddImagenInventarioMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAddImagenInventarioMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAddImagenInventarioMouseReleased(evt);
+            }
+        });
+        panelInventario.add(btnAddImagenInventario);
+        btnAddImagenInventario.setBounds(760, 300, 110, 30);
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Codigo de barras");
+        panelInventario.add(jLabel16);
+        jLabel16.setBounds(400, 180, 100, 16);
+
+        jSeparator9.setForeground(new java.awt.Color(81, 0, 126));
+        panelInventario.add(jSeparator9);
+        jSeparator9.setBounds(30, 170, 1120, 10);
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Datos del articulo");
+        panelInventario.add(jLabel17);
+        jLabel17.setBounds(40, 130, 220, 30);
+
+        btnBuscarArticulo.setBackground(new java.awt.Color(140, 61, 168));
+        btnBuscarArticulo.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarArticulo.setText("Buscar articulo");
+        btnBuscarArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnBuscarArticulo.setFocusPainted(false);
+        btnBuscarArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBuscarArticuloMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarArticuloMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBuscarArticuloMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBuscarArticuloMouseReleased(evt);
+            }
+        });
+        btnBuscarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarArticuloActionPerformed(evt);
+            }
+        });
+        panelInventario.add(btnBuscarArticulo);
+        btnBuscarArticulo.setBounds(800, 80, 170, 30);
+
+        btnAñadirArticulo.setBackground(new java.awt.Color(140, 61, 168));
+        btnAñadirArticulo.setForeground(new java.awt.Color(0, 0, 0));
+        btnAñadirArticulo.setSelected(true);
+        btnAñadirArticulo.setText("Añadir articulo");
+        btnAñadirArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAñadirArticulo.setFocusPainted(false);
+        btnAñadirArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAñadirArticuloMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAñadirArticuloMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAñadirArticuloMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAñadirArticuloMouseReleased(evt);
+            }
+        });
+        btnAñadirArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirArticuloActionPerformed(evt);
+            }
+        });
+        panelInventario.add(btnAñadirArticulo);
+        btnAñadirArticulo.setBounds(970, 80, 170, 30);
+
+        jSeparator10.setForeground(new java.awt.Color(81, 0, 126));
+        panelInventario.add(jSeparator10);
+        jSeparator10.setBounds(30, 50, 730, 20);
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Buscar");
+        panelInventario.add(jLabel18);
+        jLabel18.setBounds(40, 10, 90, 30);
+
+        txtSearchInventario.setForeground(new java.awt.Color(0, 0, 0));
+        txtSearchInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtSearchInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearchInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearchInventarioFocusLost(evt);
+            }
+        });
+        txtSearchInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtSearchInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtSearchInventarioMouseExited(evt);
+            }
+        });
+        panelInventario.add(txtSearchInventario);
+        txtSearchInventario.setBounds(40, 80, 580, 30);
+
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Busqueda por codigo de barras/nombre de articulo");
+        panelInventario.add(jLabel19);
+        jLabel19.setBounds(40, 60, 290, 16);
+
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Articulo");
+        panelInventario.add(jLabel20);
+        jLabel20.setBounds(40, 180, 50, 16);
+
+        txtArticuloInventario.setForeground(new java.awt.Color(0, 0, 0));
+        txtArticuloInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtArticuloInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtArticuloInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtArticuloInventarioFocusLost(evt);
+            }
+        });
+        txtArticuloInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtArticuloInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtArticuloInventarioMouseExited(evt);
+            }
+        });
+        panelInventario.add(txtArticuloInventario);
+        txtArticuloInventario.setBounds(40, 200, 260, 30);
+
+        txtPrecioInventario.setForeground(new java.awt.Color(0, 0, 0));
+        txtPrecioInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtPrecioInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPrecioInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPrecioInventarioFocusLost(evt);
+            }
+        });
+        txtPrecioInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPrecioInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtPrecioInventarioMouseExited(evt);
+            }
+        });
+        panelInventario.add(txtPrecioInventario);
+        txtPrecioInventario.setBounds(40, 260, 260, 30);
+
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Precio");
+        panelInventario.add(jLabel21);
+        jLabel21.setBounds(40, 240, 100, 16);
+
+        txtCantidadInventario.setForeground(new java.awt.Color(0, 0, 0));
+        txtCantidadInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtCantidadInventario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCantidadInventarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadInventarioFocusLost(evt);
+            }
+        });
+        txtCantidadInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtCantidadInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtCantidadInventarioMouseExited(evt);
+            }
+        });
+        panelInventario.add(txtCantidadInventario);
+        txtCantidadInventario.setBounds(400, 260, 260, 30);
+
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Cantidad en existencia");
+        panelInventario.add(jLabel22);
+        jLabel22.setBounds(400, 240, 140, 16);
+
+        btnSearchInventario.setBackground(new java.awt.Color(255, 255, 255));
+        btnSearchInventario.setForeground(new java.awt.Color(0, 0, 0));
+        btnSearchInventario.setText("Buscar");
+        btnSearchInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnSearchInventario.setFocusPainted(false);
+        btnSearchInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSearchInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSearchInventarioMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnSearchInventarioMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnSearchInventarioMouseReleased(evt);
+            }
+        });
+        panelInventario.add(btnSearchInventario);
+        btnSearchInventario.setBounds(630, 80, 120, 30);
+
+        labelImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        panelInventario.add(labelImagenInventario);
+        labelImagenInventario.setBounds(760, 180, 110, 110);
+
+        btnBorrarInventario.setBackground(new java.awt.Color(255, 255, 255));
+        btnBorrarInventario.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrarInventario.setText("Borrar");
+        btnBorrarInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnBorrarInventario.setFocusPainted(false);
+        btnBorrarInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBorrarInventarioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBorrarInventarioMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBorrarInventarioMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBorrarInventarioMouseReleased(evt);
+            }
+        });
+        panelInventario.add(btnBorrarInventario);
+        btnBorrarInventario.setBounds(40, 300, 120, 30);
+
+        jLabel24.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Tabla de articulos");
+        panelInventario.add(jLabel24);
+        jLabel24.setBounds(40, 350, 220, 30);
+
+        jSeparator11.setForeground(new java.awt.Color(81, 0, 126));
+        panelInventario.add(jSeparator11);
+        jSeparator11.setBounds(30, 390, 1120, 10);
+
+        TableInventario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo de barras", "Articulo", "Precio", "Cantidad", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableInventario.setGridColor(new java.awt.Color(140, 61, 168));
+        TableInventario.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        TableInventario.getTableHeader().setReorderingAllowed(false);
+        TableCarrito.getTableHeader().setBackground(new java.awt.Color(140,61,168));
+        TableCarrito.getTableHeader().setBorder(BorderFactory.createLineBorder(new java.awt.Color(255,255,255), 1));
+        jScrollPane2.setViewportView(TableInventario);
+        if (TableInventario.getColumnModel().getColumnCount() > 0) {
+            TableInventario.getColumnModel().getColumn(0).setResizable(false);
+            TableInventario.getColumnModel().getColumn(1).setResizable(false);
+            TableInventario.getColumnModel().getColumn(2).setResizable(false);
+            TableInventario.getColumnModel().getColumn(3).setResizable(false);
+            TableInventario.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        panelInventario.add(jScrollPane2);
+        jScrollPane2.setBounds(40, 400, 1090, 230);
+
+        panelContent.add(panelInventario, "pnlInventario");
 
         panelEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         panelEmpleados.setLayout(null);
-        jPanel3.add(panelEmpleados, "pnlEmpleados");
+        panelContent.add(panelEmpleados, "pnlEmpleados");
 
         panelAbout.setBackground(new java.awt.Color(255, 255, 255));
         panelAbout.setLayout(null);
-        jPanel3.add(panelAbout, "plnAbout");
+        panelContent.add(panelAbout, "plnAbout");
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 1180, 750));
+        getContentPane().add(panelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 1180, 750));
 
-        jPanel1.setBackground(new java.awt.Color(140, 61, 168));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelNav.setBackground(new java.awt.Color(140, 61, 168));
+        panelNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
+        panelNav.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
 
         btnLogout.setBackground(new java.awt.Color(102, 0, 102));
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
@@ -603,7 +1216,7 @@ CardLayout cardLayout;
                 btnLogoutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 30, 100, 30));
+        panelNav.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 30, 100, 30));
 
         Image logo=new ImageIcon(getClass().getResource("/img/logo.jpg")).getImage();
         logo=logo.getScaledInstance(183,60,java.awt.Image.SCALE_SMOOTH);
@@ -612,12 +1225,12 @@ CardLayout cardLayout;
         jLabel1.setIcon(logo2);
         jLabel1.setText("LOGO");
         jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 0, 190, 60));
+        panelNav.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 0, 190, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1560, 60));
+        getContentPane().add(panelNav, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 1560, 60));
 
-        jPanel2.setBackground(new java.awt.Color(28, 177, 217));
-        jPanel2.setLayout(null);
+        panelBotones.setBackground(new java.awt.Color(28, 177, 217));
+        panelBotones.setLayout(null);
 
         btnVentas.setBackground(new java.awt.Color(0, 0, 0));
         btnVentas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -648,7 +1261,7 @@ CardLayout cardLayout;
             btnVentasActionPerformed(evt);
         }
     });
-    jPanel2.add(btnVentas);
+    panelBotones.add(btnVentas);
     btnVentas.setBounds(0, 90, 190, 90);
 
     btnStats.setBackground(new java.awt.Color(0, 0, 0));
@@ -681,7 +1294,7 @@ btnStats.addMouseListener(new java.awt.event.MouseAdapter() {
             btnStatsActionPerformed(evt);
         }
     });
-    jPanel2.add(btnStats);
+    panelBotones.add(btnStats);
     btnStats.setBounds(0, 180, 190, 90);
 
     btnInventario.setBackground(new java.awt.Color(0, 0, 0));
@@ -713,7 +1326,7 @@ btnInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             btnInventarioActionPerformed(evt);
         }
     });
-    jPanel2.add(btnInventario);
+    panelBotones.add(btnInventario);
     btnInventario.setBounds(0, 270, 190, 90);
 
     btnEmpleados.setBackground(new java.awt.Color(0, 0, 0));
@@ -745,7 +1358,7 @@ btnEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             btnEmpleadosActionPerformed(evt);
         }
     });
-    jPanel2.add(btnEmpleados);
+    panelBotones.add(btnEmpleados);
     btnEmpleados.setBounds(0, 360, 190, 90);
 
     btnAbout.setBackground(new java.awt.Color(0, 0, 0));
@@ -777,7 +1390,7 @@ btnAbout.addMouseListener(new java.awt.event.MouseAdapter() {
             btnAboutActionPerformed(evt);
         }
     });
-    jPanel2.add(btnAbout);
+    panelBotones.add(btnAbout);
     btnAbout.setBounds(0, 560, 190, 90);
 
     btnInicio.setBackground(new java.awt.Color(0, 0, 0));
@@ -809,17 +1422,17 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnInicioActionPerformed(evt);
         }
     });
-    jPanel2.add(btnInicio);
+    panelBotones.add(btnInicio);
     btnInicio.setBounds(0, 0, 190, 90);
 
-    getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 680));
+    getContentPane().add(panelBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 190, 680));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
         changeButtons("Empleados");
-        cardLayout.show(jPanel3,"pnlEmpleados");
+        cardLayout.show(panelContent,"pnlEmpleados");
     }//GEN-LAST:event_btnEmpleadosActionPerformed
 
     private void btnEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMouseEntered
@@ -844,7 +1457,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         changeButtons("Inicio");
-        cardLayout.show(jPanel3, "pnlInicio");
+        cardLayout.show(panelContent, "pnlInicio");
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventarioMouseEntered
@@ -859,7 +1472,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         changeButtons("Inventario");
-        cardLayout.show(jPanel3,"pnlInventario");
+        cardLayout.show(panelContent,"pnlInventario");
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseEntered
@@ -874,7 +1487,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         changeButtons("Ventas");
-        cardLayout.show(jPanel3, "pnlVentas");
+        cardLayout.show(panelContent, "pnlVentas");
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnStatsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStatsMouseEntered
@@ -889,7 +1502,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         changeButtons("Stats");
-        cardLayout.show(jPanel3, "pnlStats");
+        cardLayout.show(panelContent, "pnlStats");
     }//GEN-LAST:event_btnStatsActionPerformed
 
     private void btnAboutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseEntered
@@ -904,7 +1517,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         changeButtons("About");
-        cardLayout.show(jPanel3,"pnlAbout");
+        cardLayout.show(panelContent,"pnlAbout");
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseEntered
@@ -1135,8 +1748,6 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private void btnCashMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMousePressed
         btnCash.setFont(new java.awt.Font("Dialog", 1, 11));
         btnCash.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
-        if(!btnCash.isSelected())
-            btnCash.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnCashMousePressed
 
     private void btnCashMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCashMouseReleased
@@ -1155,14 +1766,323 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private void btnCardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMousePressed
         btnCard.setFont(new java.awt.Font("Dialog", 1, 11));
         btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
-        if(!btnCard.isSelected())
-            btnCard.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnCardMousePressed
 
     private void btnCardMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardMouseReleased
         btnCard.setFont(new java.awt.Font("Dialog", 1, 12));
         btnCard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_btnCardMouseReleased
+
+    private void txtBarCodeInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioFocusGained
+        txtBarCodeInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtBarCodeInventarioFocusGained
+
+    private void txtBarCodeInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioFocusLost
+        txtBarCodeInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBarCodeInventarioFocusLost
+
+    private void txtBarCodeInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioMouseEntered
+        txtBarCodeInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtBarCodeInventarioMouseEntered
+
+    private void txtBarCodeInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioMouseExited
+        if(!(txtBarCodeInventario.isFocusOwner()))
+            txtBarCodeInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBarCodeInventarioMouseExited
+
+    private void btnAddImagenInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImagenInventarioMouseEntered
+        btnAddImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnAddImagenInventarioMouseEntered
+
+    private void btnAddImagenInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImagenInventarioMouseExited
+        btnAddImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168),1));
+    }//GEN-LAST:event_btnAddImagenInventarioMouseExited
+
+    private void btnAddImagenInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImagenInventarioMousePressed
+        btnAddImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+        btnAddImagenInventario.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnAddImagenInventarioMousePressed
+
+    private void btnAddImagenInventarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImagenInventarioMouseReleased
+        btnAddImagenInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        btnAddImagenInventario.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnAddImagenInventarioMouseReleased
+
+    private void btnBuscarArticuloMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarArticuloMouseEntered
+        btnBuscarArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnBuscarArticuloMouseEntered
+
+    private void btnBuscarArticuloMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarArticuloMouseExited
+        btnBuscarArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168),1));
+    }//GEN-LAST:event_btnBuscarArticuloMouseExited
+
+    private void btnBuscarArticuloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarArticuloMousePressed
+        btnBuscarArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+        btnBuscarArticulo.setFont(new java.awt.Font("Dialog", 1, 11));
+        if(!btnBuscarArticulo.isSelected())
+            btnBuscarArticulo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnBuscarArticuloMousePressed
+
+    private void btnBuscarArticuloMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarArticuloMouseReleased
+        btnBuscarArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        btnBuscarArticulo.setFont(new java.awt.Font("Dialog", 1, 12));
+        
+    }//GEN-LAST:event_btnBuscarArticuloMouseReleased
+
+    private void btnAñadirArticuloMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirArticuloMouseEntered
+        btnAñadirArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_btnAñadirArticuloMouseEntered
+
+    private void btnAñadirArticuloMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirArticuloMouseExited
+        btnAñadirArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168),1));
+    }//GEN-LAST:event_btnAñadirArticuloMouseExited
+
+    private void btnAñadirArticuloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirArticuloMousePressed
+        btnAñadirArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),3));
+        btnAñadirArticulo.setFont(new java.awt.Font("Dialog", 1, 11));
+        if(!btnAñadirArticulo.isSelected())
+            btnAñadirArticulo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnAñadirArticuloMousePressed
+
+    private void btnAñadirArticuloMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirArticuloMouseReleased
+        btnAñadirArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        btnAñadirArticulo.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnAñadirArticuloMouseReleased
+
+    private void btnAñadirArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirArticuloActionPerformed
+        if(btnBuscarArticulo.isSelected()){
+            btnBuscarArticulo.setSelected(false);
+        }
+        else{
+            btnBuscarArticulo.setSelected(true);
+        }
+        if(btnAñadirArticulo.isSelected()){
+            btnAñadirArticulo.setForeground(Color.BLACK);
+            btnBuscarArticulo.setForeground(Color.WHITE);
+        }
+        else{
+            btnAñadirArticulo.setForeground(Color.WHITE);
+            btnBuscarArticulo.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_btnAñadirArticuloActionPerformed
+
+    private void txtSearchInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchInventarioFocusGained
+        txtSearchInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtSearchInventarioFocusGained
+
+    private void txtSearchInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchInventarioFocusLost
+        txtSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtSearchInventarioFocusLost
+
+    private void txtSearchInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchInventarioMouseEntered
+        txtSearchInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtSearchInventarioMouseEntered
+
+    private void txtSearchInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchInventarioMouseExited
+        if(!(txtSearchInventario.isFocusOwner()))
+            txtSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtSearchInventarioMouseExited
+
+    private void txtArticuloInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtArticuloInventarioFocusGained
+        txtArticuloInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtArticuloInventarioFocusGained
+
+    private void txtArticuloInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtArticuloInventarioFocusLost
+        txtArticuloInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtArticuloInventarioFocusLost
+
+    private void txtArticuloInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticuloInventarioMouseEntered
+        txtArticuloInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtArticuloInventarioMouseEntered
+
+    private void txtArticuloInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticuloInventarioMouseExited
+       if(!(txtArticuloInventario.isFocusOwner()))
+            txtArticuloInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtArticuloInventarioMouseExited
+
+    private void txtPrecioInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioInventarioFocusGained
+        txtPrecioInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPrecioInventarioFocusGained
+
+    private void txtPrecioInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioInventarioFocusLost
+        txtPrecioInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPrecioInventarioFocusLost
+
+    private void txtPrecioInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioInventarioMouseEntered
+        txtPrecioInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtPrecioInventarioMouseEntered
+
+    private void txtPrecioInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioInventarioMouseExited
+        if(!(txtPrecioInventario.isFocusOwner()))
+            txtPrecioInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPrecioInventarioMouseExited
+
+    private void txtCantidadInventarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadInventarioFocusGained
+        txtCantidadInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtCantidadInventarioFocusGained
+
+    private void txtCantidadInventarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadInventarioFocusLost
+        txtCantidadInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtCantidadInventarioFocusLost
+
+    private void txtCantidadInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadInventarioMouseEntered
+        txtCantidadInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+    }//GEN-LAST:event_txtCantidadInventarioMouseEntered
+
+    private void txtCantidadInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadInventarioMouseExited
+        if(!(txtCantidadInventario.isFocusOwner()))
+            txtCantidadInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtCantidadInventarioMouseExited
+
+    private void btnSearchInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchInventarioMouseEntered
+        btnSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnSearchInventarioMouseEntered
+
+    private void btnSearchInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchInventarioMouseExited
+        btnSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnSearchInventarioMouseExited
+
+    private void btnSearchInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchInventarioMousePressed
+        btnSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnSearchInventario.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnSearchInventarioMousePressed
+
+    private void btnSearchInventarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchInventarioMouseReleased
+        btnSearchInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnSearchInventario.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnSearchInventarioMouseReleased
+
+    private void btnBorrarInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInventarioMouseEntered
+        btnBorrarInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnBorrarInventarioMouseEntered
+
+    private void btnBorrarInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInventarioMouseExited
+        btnBorrarInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnBorrarInventarioMouseExited
+
+    private void btnBorrarInventarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInventarioMousePressed
+        btnBorrarInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnBorrarInventario.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnBorrarInventarioMousePressed
+
+    private void btnBorrarInventarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarInventarioMouseReleased
+        btnBorrarInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnBorrarInventario.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnBorrarInventarioMouseReleased
+
+    private void txtSearchVentasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchVentasFocusGained
+        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtSearchVentasFocusGained
+
+    private void txtSearchVentasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchVentasFocusLost
+        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtSearchVentasFocusLost
+
+    private void txtSearchVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchVentasMouseEntered
+        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtSearchVentasMouseEntered
+
+    private void txtSearchVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchVentasMouseExited
+        if(!(txtSearchVentas.isFocusOwner()))
+            txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtSearchVentasMouseExited
+
+    private void btnBuscarVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseEntered
+        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnBuscarVentasMouseEntered
+
+    private void btnBuscarVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseExited
+        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnBuscarVentasMouseExited
+
+    private void btnBuscarVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMousePressed
+        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnBuscarVentas.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnBuscarVentasMousePressed
+
+    private void btnBuscarVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseReleased
+        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnBuscarVentas.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnBuscarVentasMouseReleased
+
+    private void btnMostrarEfectivoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasMouseEntered
+        btnMostrarEfectivoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnMostrarEfectivoVentasMouseEntered
+
+    private void btnMostrarEfectivoVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasMouseExited
+        btnMostrarEfectivoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnMostrarEfectivoVentasMouseExited
+
+    private void btnMostrarEfectivoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasMousePressed
+        btnMostrarEfectivoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnMostrarEfectivoVentas.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnMostrarEfectivoVentasMousePressed
+
+    private void btnMostrarEfectivoVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasMouseReleased
+        btnMostrarEfectivoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnMostrarEfectivoVentas.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnMostrarEfectivoVentasMouseReleased
+
+    private void btnMostrarEfectivoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarEfectivoVentasActionPerformed
+
+    private void btnMostrarTarjetaVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTarjetaVentasMouseEntered
+
+    private void btnMostrarTarjetaVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTarjetaVentasMouseExited
+
+    private void btnMostrarTarjetaVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTarjetaVentasMousePressed
+
+    private void btnMostrarTarjetaVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTarjetaVentasMouseReleased
+
+    private void btnMostrarTarjetaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTarjetaVentasActionPerformed
+
+    private void btnMostrarTodoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTodoVentasMouseEntered
+
+    private void btnMostrarTodoVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTodoVentasMouseExited
+
+    private void btnMostrarTodoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTodoVentasMousePressed
+
+    private void btnMostrarTodoVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTodoVentasMouseReleased
+
+    private void btnMostrarTodoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarTodoVentasActionPerformed
+
+    private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
+        if(btnAñadirArticulo.isSelected()){
+            btnAñadirArticulo.setSelected(false);
+        }
+        else{
+            btnAñadirArticulo.setSelected(true);
+        }
+        if(btnBuscarArticulo.isSelected()){
+            btnBuscarArticulo.setForeground(Color.BLACK);
+            btnAñadirArticulo.setForeground(Color.WHITE);
+        }
+        else{
+            btnBuscarArticulo.setForeground(Color.WHITE);
+            btnAñadirArticulo.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_btnBuscarArticuloActionPerformed
     private void changeButtons(String s){
         setButtonsNormal();
         switch(s){
@@ -1258,16 +2178,27 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableCarrito;
+    private javax.swing.JTable TableInventario;
+    private javax.swing.JTable TableVentas;
     private javax.swing.JToggleButton btnAbout;
+    private javax.swing.JButton btnAddImagenInventario;
     private javax.swing.JButton btnAddToCart;
+    private javax.swing.JToggleButton btnAñadirArticulo;
+    private javax.swing.JButton btnBorrarInventario;
+    private javax.swing.JToggleButton btnBuscarArticulo;
+    private javax.swing.JButton btnBuscarVentas;
     private javax.swing.JToggleButton btnCard;
     private javax.swing.JToggleButton btnCash;
     private javax.swing.JToggleButton btnEmpleados;
     private javax.swing.JToggleButton btnInicio;
     private javax.swing.JToggleButton btnInventario;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JToggleButton btnMostrarEfectivoVentas;
+    private javax.swing.JToggleButton btnMostrarTarjetaVentas;
+    private javax.swing.JToggleButton btnMostrarTodoVentas;
     private javax.swing.JButton btnPagar;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSearchInventario;
     private javax.swing.JToggleButton btnStats;
     private javax.swing.JToggleButton btnVentas;
     private javax.swing.JButton jButton1;
@@ -1297,35 +2228,68 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JLabel labelImagenInventario;
     private javax.swing.JPanel panelAbout;
+    private javax.swing.JPanel panelBotones;
+    private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelEmpleados;
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelInventario;
+    private javax.swing.JPanel panelNav;
     private javax.swing.JPanel panelStats;
     private javax.swing.JPanel panelVentas;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtArticle;
+    private javax.swing.JTextField txtArticuloInventario;
     private javax.swing.JTextField txtBarCode;
+    private javax.swing.JTextField txtBarCodeInventario;
+    private javax.swing.JTextField txtCantidadInventario;
     private javax.swing.JTextField txtPayment;
+    private javax.swing.JTextField txtPrecioInventario;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtSearchInventario;
+    private javax.swing.JTextField txtSearchVentas;
     // End of variables declaration//GEN-END:variables
 }
