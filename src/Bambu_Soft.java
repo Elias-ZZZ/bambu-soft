@@ -2024,47 +2024,68 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnMostrarEfectivoVentasMouseReleased
 
     private void btnMostrarEfectivoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasActionPerformed
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setSelected(true);
+        btnMostrarTodoVentas.setForeground(Color.BLACK);
+        btnMostrarTarjetaVentas.setSelected(true);
+        btnMostrarTarjetaVentas.setForeground(Color.BLACK);
+        btnMostrarEfectivoVentas.setForeground(Color.WHITE);
+        btnMostrarEfectivoVentas.setFocusable(false);
+        
     }//GEN-LAST:event_btnMostrarEfectivoVentasActionPerformed
 
     private void btnMostrarTarjetaVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseEntered
-        // TODO add your handling code here:
+        btnMostrarTarjetaVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
     }//GEN-LAST:event_btnMostrarTarjetaVentasMouseEntered
 
     private void btnMostrarTarjetaVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseExited
-        // TODO add your handling code here:
+        btnMostrarTarjetaVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_btnMostrarTarjetaVentasMouseExited
 
     private void btnMostrarTarjetaVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMousePressed
-        // TODO add your handling code here:
+        btnMostrarTarjetaVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnMostrarTarjetaVentas.setFont(new java.awt.Font("Dialog", 1, 11));
     }//GEN-LAST:event_btnMostrarTarjetaVentasMousePressed
 
     private void btnMostrarTarjetaVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseReleased
-        // TODO add your handling code here:
+        btnMostrarTarjetaVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnMostrarTarjetaVentas.setFont(new java.awt.Font("Dialog", 1, 12));
     }//GEN-LAST:event_btnMostrarTarjetaVentasMouseReleased
 
     private void btnMostrarTarjetaVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasActionPerformed
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setSelected(true);
+        btnMostrarTodoVentas.setForeground(Color.BLACK);
+        btnMostrarEfectivoVentas.setSelected(true);
+        btnMostrarEfectivoVentas.setForeground(Color.BLACK);
+        btnMostrarTarjetaVentas.setForeground(Color.WHITE);
+        btnMostrarTarjetaVentas.setFocusable(false);
+        
     }//GEN-LAST:event_btnMostrarTarjetaVentasActionPerformed
 
     private void btnMostrarTodoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseEntered
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
     }//GEN-LAST:event_btnMostrarTodoVentasMouseEntered
 
     private void btnMostrarTodoVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseExited
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_btnMostrarTodoVentasMouseExited
 
     private void btnMostrarTodoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMousePressed
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnMostrarTodoVentas.setFont(new java.awt.Font("Dialog", 1, 11));
     }//GEN-LAST:event_btnMostrarTodoVentasMousePressed
 
     private void btnMostrarTodoVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseReleased
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnMostrarTodoVentas.setFont(new java.awt.Font("Dialog", 1, 12));
     }//GEN-LAST:event_btnMostrarTodoVentasMouseReleased
 
     private void btnMostrarTodoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasActionPerformed
-        // TODO add your handling code here:
+        btnMostrarTodoVentas.setForeground(Color.WHITE);
+        btnMostrarTarjetaVentas.setSelected(true);
+        btnMostrarTarjetaVentas.setForeground(Color.BLACK);
+        btnMostrarEfectivoVentas.setForeground(Color.BLACK);
+        btnMostrarEfectivoVentas.setSelected(true);
+        
     }//GEN-LAST:event_btnMostrarTodoVentasActionPerformed
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
