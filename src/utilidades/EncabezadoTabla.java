@@ -38,7 +38,7 @@ public class EncabezadoTabla  implements TableCellRenderer {
         //jcomponent.setBackground( new Color(236,234,219) );
         jcomponent.setBackground( new Color(140,61,168) );
         //jcomponent.setToolTipText("Tabla Seguimiento");
-        jcomponent.setForeground(Color.white);
+        jcomponent.setForeground(Color.WHITE);
         
         return jcomponent;
     }
