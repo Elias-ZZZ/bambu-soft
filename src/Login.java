@@ -4,6 +4,7 @@ import java.awt.Image;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import utilidades.SQL;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,6 +25,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
+        labelError.setVisible(false);
         UIManager.put("Button.select", new java.awt.Color(255,255,255));
     }
 
@@ -44,31 +46,16 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
+        labelError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(140, 61, 168));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
-        );
-
+        jPanel1.setLayout(null);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(12, 19, 190, 66);
         Image logo=new ImageIcon(getClass().getResource("/img/logo.jpg")).getImage();
         logo=logo.getScaledInstance(183,60,java.awt.Image.SCALE_SMOOTH);
         ImageIcon logo2=new ImageIcon(logo);
@@ -77,6 +64,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 110));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
 
         btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setForeground(new java.awt.Color(0, 0, 0));
@@ -99,6 +87,13 @@ public class Login extends javax.swing.JFrame {
                 btnLoginMouseReleased(evt);
             }
         });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLogin);
+        btnLogin.setBounds(60, 170, 103, 29);
 
         txtUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtUser.setForeground(new java.awt.Color(0, 0, 0));
@@ -120,12 +115,18 @@ public class Login extends javax.swing.JFrame {
                 txtUserMouseExited(evt);
             }
         });
+        jPanel2.add(txtUser);
+        txtUser.setBounds(12, 34, 186, 24);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Usuario");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(12, 12, 44, 16);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(12, 70, 66, 16);
 
         txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168)));
@@ -145,47 +146,14 @@ public class Login extends javax.swing.JFrame {
                 txtPasswordMouseExited(evt);
             }
         });
+        jPanel2.add(txtPassword);
+        txtPassword.setBounds(12, 92, 186, 24);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("Usuario o contraseña incorrecto");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 38, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        labelError.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
+        labelError.setForeground(new java.awt.Color(255, 0, 0));
+        labelError.setText("Usuario o contraseña incorrecto");
+        jPanel2.add(labelError);
+        labelError.setBounds(12, 128, 148, 12);
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 210, 210));
 
@@ -246,6 +214,22 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_txtPasswordFocusLost
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String usuario=txtUser.getText();
+        String password=new String(txtPassword.getPassword());
+        try{
+            sql=new SQL();
+            if(!sql.verificar(usuario,password)){
+                labelError.setVisible(true);
+            }
+            else{
+                Bambu_Soft b=new Bambu_Soft();
+                b.setVisible(true);
+                dispose();
+            }
+        }catch(Exception e){e.printStackTrace();}
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,15 +259,15 @@ public class Login extends javax.swing.JFrame {
 
         Login l=new Login();
     }
-
+    private SQL sql;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelError;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
