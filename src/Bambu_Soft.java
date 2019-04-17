@@ -3,9 +3,11 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
+import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -13,6 +15,7 @@ import javax.swing.plaf.metal.MetalButtonUI;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import javax.swing.table.JTableHeader;
 import utilidades.EncabezadoTabla;
+import utilidades.SQL;
 
 
 
@@ -27,12 +30,26 @@ import utilidades.EncabezadoTabla;
  * @author Elias-ZZZ
  */
 public class Bambu_Soft extends javax.swing.JFrame {
-CardLayout cardLayout;
+private CardLayout cardLayout;
+private SQL sql;
+private ArrayList vendidos, agotandose, agotados;
+        
     
-    public Bambu_Soft() {
+    public Bambu_Soft(String usuario) {
+        sql=new SQL();
+        try{
+            sql.inicio();
+            vendidos=sql.getVendidos();
+            agotandose=sql.getAgotandose();
+            agotados=sql.getAgotados();
+        }catch(Exception e){e.printStackTrace();}
         UIManager.put("ToggleButton.select", Color.WHITE);
         UIManager.put("Button.select", Color.WHITE);
         initComponents();
+        checkVendidos();
+        checkAgotandose();
+        checkAgotados();
+        labelUsuario.setText(usuario);
         setVisible(true);
         setExtendedState(MAXIMIZED_BOTH);
         btnInicio.setSelected(true);
@@ -65,33 +82,36 @@ CardLayout cardLayout;
 
         panelContent = new javax.swing.JPanel();
         panelInicio = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnVendidos2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnVendidos3 = new javax.swing.JButton();
+        btnVendidos5 = new javax.swing.JButton();
+        btnVendidos1 = new javax.swing.JButton();
+        btnVendidos6 = new javax.swing.JButton();
+        btnVendidos7 = new javax.swing.JButton();
+        btnVendidos4 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        btnAgotandose1 = new javax.swing.JButton();
+        labelNothingAgotado = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
+        btnAgotado1 = new javax.swing.JButton();
+        btnAgotandose2 = new javax.swing.JButton();
+        btnAgotandose3 = new javax.swing.JButton();
+        btnAgotandose4 = new javax.swing.JButton();
+        btnAgotandose5 = new javax.swing.JButton();
+        btnAgotandose6 = new javax.swing.JButton();
+        btnAgotandose7 = new javax.swing.JButton();
+        btnAgotado2 = new javax.swing.JButton();
+        btnAgotado3 = new javax.swing.JButton();
+        btnAgotado4 = new javax.swing.JButton();
+        btnAgotado5 = new javax.swing.JButton();
+        btnAgotado6 = new javax.swing.JButton();
+        btnAgotado7 = new javax.swing.JButton();
+        jLabel39 = new javax.swing.JLabel();
+        labelNothingVendido = new javax.swing.JLabel();
+        labelNothingAgotandose = new javax.swing.JLabel();
         panelVentas = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -185,7 +205,7 @@ CardLayout cardLayout;
         jScrollPane4 = new javax.swing.JScrollPane();
         TableEmpleados = new javax.swing.JTable();
         panelNav = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         panelBotones = new javax.swing.JPanel();
@@ -206,13 +226,33 @@ CardLayout cardLayout;
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelInicio.setLayout(null);
 
-        jButton1.setText("jButton1");
-        panelInicio.add(jButton1);
-        jButton1.setBounds(200, 70, 130, 130);
+        btnVendidos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos2.setFocusPainted(false);
+        btnVendidos2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos2MouseReleased(evt);
+            }
+        });
+        btnVendidos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos2ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos2);
+        btnVendidos2.setBounds(200, 70, 130, 130);
 
         jSeparator1.setForeground(new java.awt.Color(81, 0, 126));
         panelInicio.add(jSeparator1);
-        jSeparator1.setBounds(30, 470, 1110, 40);
+        jSeparator1.setBounds(30, 470, 1110, 10);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -220,29 +260,151 @@ CardLayout cardLayout;
         panelInicio.add(jLabel3);
         jLabel3.setBounds(40, 430, 350, 32);
 
-        jButton2.setText("jButton1");
-        panelInicio.add(jButton2);
-        jButton2.setBounds(360, 70, 130, 130);
+        btnVendidos3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos3.setFocusPainted(false);
+        btnVendidos3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos3MouseReleased(evt);
+            }
+        });
+        btnVendidos3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos3ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos3);
+        btnVendidos3.setBounds(360, 70, 130, 130);
 
-        jButton3.setText("jButton1");
-        panelInicio.add(jButton3);
-        jButton3.setBounds(680, 70, 130, 130);
+        btnVendidos5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos5.setFocusPainted(false);
+        btnVendidos5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos5MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos5MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos5MouseReleased(evt);
+            }
+        });
+        btnVendidos5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos5ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos5);
+        btnVendidos5.setBounds(680, 70, 130, 130);
 
-        jButton4.setText("jButton1");
-        panelInicio.add(jButton4);
-        jButton4.setBounds(40, 70, 130, 130);
+        btnVendidos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos1.setFocusPainted(false);
+        btnVendidos1.setMargin(new java.awt.Insets(2, 24, 2, 14));
+        btnVendidos1.setPreferredSize(new java.awt.Dimension(130, 130));
+        btnVendidos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos1MouseReleased(evt);
+            }
+        });
+        btnVendidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos1ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos1);
+        btnVendidos1.setBounds(40, 70, 130, 130);
 
-        jButton5.setText("jButton1");
-        panelInicio.add(jButton5);
-        jButton5.setBounds(840, 70, 130, 130);
+        btnVendidos6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos6.setFocusPainted(false);
+        btnVendidos6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos6MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos6MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos6MouseReleased(evt);
+            }
+        });
+        btnVendidos6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos6ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos6);
+        btnVendidos6.setBounds(840, 70, 130, 130);
 
-        jButton6.setText("jButton1");
-        panelInicio.add(jButton6);
-        jButton6.setBounds(1000, 70, 130, 130);
+        btnVendidos7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos7.setFocusPainted(false);
+        btnVendidos7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos7MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos7MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos7MouseReleased(evt);
+            }
+        });
+        btnVendidos7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos7ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos7);
+        btnVendidos7.setBounds(1000, 70, 130, 130);
 
-        jButton7.setText("jButton1");
-        panelInicio.add(jButton7);
-        jButton7.setBounds(520, 70, 130, 130);
+        btnVendidos4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnVendidos4.setFocusPainted(false);
+        btnVendidos4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVendidos4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVendidos4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVendidos4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVendidos4MouseReleased(evt);
+            }
+        });
+        btnVendidos4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendidos4ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnVendidos4);
+        btnVendidos4.setBounds(520, 70, 130, 130);
 
         jSeparator2.setForeground(new java.awt.Color(81, 0, 126));
         panelInicio.add(jSeparator2);
@@ -254,71 +416,365 @@ CardLayout cardLayout;
         panelInicio.add(jLabel4);
         jLabel4.setBounds(40, 10, 184, 32);
 
-        jButton8.setText("jButton1");
-        panelInicio.add(jButton8);
-        jButton8.setBounds(40, 280, 130, 130);
+        btnAgotandose1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose1.setFocusPainted(false);
+        btnAgotandose1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose1MouseReleased(evt);
+            }
+        });
+        btnAgotandose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose1ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose1);
+        btnAgotandose1.setBounds(40, 280, 130, 130);
 
-        jButton9.setText("jButton1");
-        panelInicio.add(jButton9);
-        jButton9.setBounds(200, 280, 130, 130);
-
-        jButton10.setText("jButton1");
-        panelInicio.add(jButton10);
-        jButton10.setBounds(360, 280, 130, 130);
-
-        jButton11.setText("jButton1");
-        panelInicio.add(jButton11);
-        jButton11.setBounds(520, 280, 130, 130);
-
-        jButton12.setText("jButton1");
-        panelInicio.add(jButton12);
-        jButton12.setBounds(680, 280, 130, 130);
-
-        jButton13.setText("jButton1");
-        panelInicio.add(jButton13);
-        jButton13.setBounds(840, 280, 130, 130);
-
-        jButton14.setText("jButton1");
-        panelInicio.add(jButton14);
-        jButton14.setBounds(1000, 280, 130, 130);
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Producto a punto de agotarse");
-        panelInicio.add(jLabel5);
-        jLabel5.setBounds(40, 220, 350, 32);
+        labelNothingAgotado.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelNothingAgotado.setForeground(new java.awt.Color(0, 0, 0));
+        labelNothingAgotado.setText("Nada que mostrar");
+        panelInicio.add(labelNothingAgotado);
+        labelNothingAgotado.setBounds(40, 490, 210, 32);
+        labelNothingAgotado.setVisible(false);
 
         jSeparator3.setForeground(new java.awt.Color(81, 0, 126));
         panelInicio.add(jSeparator3);
-        jSeparator3.setBounds(30, 260, 1110, 40);
+        jSeparator3.setBounds(30, 260, 1110, 10);
 
-        jButton15.setText("jButton1");
-        panelInicio.add(jButton15);
-        jButton15.setBounds(40, 490, 130, 130);
+        btnAgotado1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado1MouseReleased(evt);
+            }
+        });
+        btnAgotado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado1ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado1);
+        btnAgotado1.setBounds(40, 490, 130, 130);
 
-        jButton16.setText("jButton1");
-        panelInicio.add(jButton16);
-        jButton16.setBounds(200, 490, 130, 130);
+        btnAgotandose2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose2.setFocusPainted(false);
+        btnAgotandose2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose2MouseReleased(evt);
+            }
+        });
+        btnAgotandose2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose2ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose2);
+        btnAgotandose2.setBounds(200, 280, 130, 130);
 
-        jButton17.setText("jButton1");
-        panelInicio.add(jButton17);
-        jButton17.setBounds(360, 490, 130, 130);
+        btnAgotandose3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose3.setFocusPainted(false);
+        btnAgotandose3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose3MouseReleased(evt);
+            }
+        });
+        btnAgotandose3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose3ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose3);
+        btnAgotandose3.setBounds(360, 280, 130, 130);
 
-        jButton18.setText("jButton1");
-        panelInicio.add(jButton18);
-        jButton18.setBounds(520, 490, 130, 130);
+        btnAgotandose4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose4.setFocusPainted(false);
+        btnAgotandose4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose4MouseReleased(evt);
+            }
+        });
+        btnAgotandose4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose4ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose4);
+        btnAgotandose4.setBounds(520, 280, 130, 130);
 
-        jButton19.setText("jButton1");
-        panelInicio.add(jButton19);
-        jButton19.setBounds(680, 490, 130, 130);
+        btnAgotandose5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose5.setFocusPainted(false);
+        btnAgotandose5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose5MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose5MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose5MouseReleased(evt);
+            }
+        });
+        btnAgotandose5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose5ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose5);
+        btnAgotandose5.setBounds(680, 280, 130, 130);
 
-        jButton20.setText("jButton1");
-        panelInicio.add(jButton20);
-        jButton20.setBounds(840, 490, 130, 130);
+        btnAgotandose6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose6.setFocusPainted(false);
+        btnAgotandose6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose6MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose6MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose6MouseReleased(evt);
+            }
+        });
+        btnAgotandose6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose6ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose6);
+        btnAgotandose6.setBounds(840, 280, 130, 130);
 
-        jButton21.setText("jButton1");
-        panelInicio.add(jButton21);
-        jButton21.setBounds(1000, 490, 130, 130);
+        btnAgotandose7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotandose7.setFocusPainted(false);
+        btnAgotandose7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotandose7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotandose7MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotandose7MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotandose7MouseReleased(evt);
+            }
+        });
+        btnAgotandose7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotandose7ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotandose7);
+        btnAgotandose7.setBounds(1000, 280, 130, 130);
+
+        btnAgotado2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado2MouseReleased(evt);
+            }
+        });
+        btnAgotado2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado2ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado2);
+        btnAgotado2.setBounds(200, 490, 130, 130);
+
+        btnAgotado3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado3MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado3MouseReleased(evt);
+            }
+        });
+        btnAgotado3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado3ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado3);
+        btnAgotado3.setBounds(360, 490, 130, 130);
+
+        btnAgotado4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado4MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado4MouseReleased(evt);
+            }
+        });
+        btnAgotado4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado4ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado4);
+        btnAgotado4.setBounds(520, 490, 130, 130);
+
+        btnAgotado5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado5MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado5MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado5MouseReleased(evt);
+            }
+        });
+        btnAgotado5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado5ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado5);
+        btnAgotado5.setBounds(680, 490, 130, 130);
+
+        btnAgotado6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado6MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado6MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado6MouseReleased(evt);
+            }
+        });
+        btnAgotado6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado6ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado6);
+        btnAgotado6.setBounds(840, 490, 130, 130);
+
+        btnAgotado7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAgotado7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgotado7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAgotado7MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAgotado7MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAgotado7MouseReleased(evt);
+            }
+        });
+        btnAgotado7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgotado7ActionPerformed(evt);
+            }
+        });
+        panelInicio.add(btnAgotado7);
+        btnAgotado7.setBounds(1000, 490, 130, 130);
+
+        jLabel39.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setText("Producto a punto de agotarse");
+        panelInicio.add(jLabel39);
+        jLabel39.setBounds(40, 220, 350, 32);
+
+        labelNothingVendido.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelNothingVendido.setForeground(new java.awt.Color(0, 0, 0));
+        labelNothingVendido.setText("Nada que mostrar");
+        panelInicio.add(labelNothingVendido);
+        labelNothingVendido.setBounds(40, 70, 210, 32);
+        labelNothingVendido.setVisible(false);
+
+        labelNothingAgotandose.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelNothingAgotandose.setForeground(new java.awt.Color(0, 0, 0));
+        labelNothingAgotandose.setText("Nada que mostrar");
+        panelInicio.add(labelNothingAgotandose);
+        labelNothingAgotandose.setBounds(40, 280, 210, 32);
+        labelNothingAgotandose.setVisible(false);
 
         panelContent.add(panelInicio, "pnlInicio");
 
@@ -1470,9 +1926,9 @@ CardLayout cardLayout;
         panelNav.setBackground(new java.awt.Color(140, 61, 168));
         panelNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Usuario");
-        panelNav.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
+        labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsuario.setText("Usuario");
+        panelNav.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, -1, -1));
 
         btnLogout.setBackground(new java.awt.Color(102, 0, 102));
         btnLogout.setForeground(new java.awt.Color(255, 255, 255));
@@ -1738,6 +2194,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         changeButtons("Inicio");
+        checkVendidos();
+        checkAgotandose();
+        checkAgotados();
         cardLayout.show(panelContent, "pnlInicio");
     }//GEN-LAST:event_btnInicioActionPerformed
 
@@ -1812,7 +2271,11 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnLogoutMouseExited
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        
+        try{
+            sql.cerrarConexion();
+        }catch(Exception e){e.printStackTrace();}
+        Login login=new Login();
+        dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
@@ -2522,6 +2985,426 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnVendidos1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos1MouseEntered
+        btnVendidos1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos1MouseEntered
+
+    private void btnVendidos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos1MouseExited
+        btnVendidos1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos1MouseExited
+
+    private void btnVendidos1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos1MousePressed
+        btnVendidos1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnVendidos1MousePressed
+
+    private void btnVendidos1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos1MouseReleased
+        btnVendidos1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos1MouseReleased
+
+    private void btnVendidos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos5ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(4)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos5ActionPerformed
+
+    private void btnVendidos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos7ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(6)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos7ActionPerformed
+
+    private void btnVendidos2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos2MousePressed
+         btnVendidos2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnVendidos2MousePressed
+
+    private void btnVendidos2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos2MouseReleased
+        btnVendidos2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos2MouseReleased
+
+    private void btnVendidos2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos2MouseExited
+        btnVendidos2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos2MouseExited
+
+    private void btnVendidos2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos2MouseEntered
+         btnVendidos2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos2MouseEntered
+
+    private void btnVendidos3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos3MouseEntered
+        btnVendidos3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos3MouseEntered
+
+    private void btnVendidos3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos3MouseExited
+        btnVendidos2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos3MouseExited
+
+    private void btnVendidos3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos3MousePressed
+        btnVendidos3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnVendidos3MousePressed
+
+    private void btnVendidos3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos3MouseReleased
+        btnVendidos3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos3MouseReleased
+
+    private void btnVendidos4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos4MouseEntered
+        btnVendidos4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos4MouseEntered
+
+    private void btnVendidos4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos4MouseExited
+        btnVendidos4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos4MouseExited
+
+    private void btnVendidos4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos4MouseReleased
+        btnVendidos4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos4MouseReleased
+
+    private void btnVendidos4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos4MousePressed
+        btnVendidos4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos4MousePressed
+
+    private void btnVendidos5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos5MouseExited
+        btnVendidos5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos5MouseExited
+
+    private void btnVendidos5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos5MouseEntered
+        btnVendidos5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos5MouseEntered
+
+    private void btnVendidos5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos5MousePressed
+        btnVendidos5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos5MousePressed
+
+    private void btnVendidos5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos5MouseReleased
+        btnVendidos5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos5MouseReleased
+
+    private void btnVendidos6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos6MouseEntered
+        btnVendidos6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos6MouseEntered
+
+    private void btnVendidos6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos6MouseExited
+        btnVendidos6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos6MouseExited
+
+    private void btnVendidos6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos6MousePressed
+        btnVendidos6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos6MousePressed
+
+    private void btnVendidos6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos6MouseReleased
+        btnVendidos6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos6MouseReleased
+
+    private void btnVendidos7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos7MouseEntered
+        btnVendidos7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos7MouseEntered
+
+    private void btnVendidos7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos7MouseExited
+        btnVendidos7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnVendidos7MouseExited
+
+    private void btnVendidos7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos7MousePressed
+        btnVendidos7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos7MousePressed
+
+    private void btnVendidos7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos7MouseReleased
+        btnVendidos7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnVendidos7MouseReleased
+
+    private void btnAgotandose1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose1MouseEntered
+        btnAgotandose1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose1MouseEntered
+
+    private void btnAgotandose1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose1MouseExited
+        btnAgotandose1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose1MouseExited
+
+    private void btnAgotandose1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose1MousePressed
+        btnAgotandose1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose1MousePressed
+
+    private void btnAgotandose1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose1MouseReleased
+        btnAgotandose1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose1MouseReleased
+
+    private void btnAgotandose2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose2MouseEntered
+        btnAgotandose2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose2MouseEntered
+
+    private void btnAgotandose2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose2MouseExited
+        btnAgotandose2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose2MouseExited
+
+    private void btnAgotandose2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose2MousePressed
+        btnAgotandose2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose2MousePressed
+
+    private void btnAgotandose2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose2MouseReleased
+        btnAgotandose2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose2MouseReleased
+
+    private void btnAgotandose3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose3MouseEntered
+        btnAgotandose3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose3MouseEntered
+
+    private void btnAgotandose3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose3MouseExited
+        btnAgotandose3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose3MouseExited
+
+    private void btnAgotandose3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose3MousePressed
+        btnAgotandose3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose3MousePressed
+
+    private void btnAgotandose3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose3MouseReleased
+        btnAgotandose3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose3MouseReleased
+
+    private void btnAgotandose4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose4MouseEntered
+        btnAgotandose4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose4MouseEntered
+
+    private void btnAgotandose4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose4MouseExited
+        btnAgotandose4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose4MouseExited
+
+    private void btnAgotandose4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose4MousePressed
+        btnAgotandose4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose4MousePressed
+
+    private void btnAgotandose4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose4MouseReleased
+        btnAgotandose4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose4MouseReleased
+
+    private void btnAgotandose5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose5MouseEntered
+        btnAgotandose5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose5MouseEntered
+
+    private void btnAgotandose5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose5MouseExited
+        btnAgotandose5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose5MouseExited
+
+    private void btnAgotandose5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose5MousePressed
+        btnAgotandose5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose5MousePressed
+
+    private void btnAgotandose5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose5MouseReleased
+        btnAgotandose5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose5MouseReleased
+
+    private void btnAgotandose6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose6MouseEntered
+        btnAgotandose6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose6MouseEntered
+
+    private void btnAgotandose6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose6MouseExited
+        btnAgotandose6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose6MouseExited
+
+    private void btnAgotandose6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose6MousePressed
+        btnAgotandose6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose6MousePressed
+
+    private void btnAgotandose6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose6MouseReleased
+        btnAgotandose6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose6MouseReleased
+
+    private void btnAgotandose7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose7MouseEntered
+        btnAgotandose7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose7MouseEntered
+
+    private void btnAgotandose7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose7MouseExited
+        btnAgotandose7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotandose7MouseExited
+
+    private void btnAgotandose7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose7MousePressed
+        btnAgotandose7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotandose7MousePressed
+
+    private void btnAgotandose7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotandose7MouseReleased
+        btnAgotandose7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotandose7MouseReleased
+
+    private void btnAgotado1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado1MouseEntered
+        btnAgotado1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado1MouseEntered
+
+    private void btnAgotado1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado1MouseExited
+        btnAgotado1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado1MouseExited
+
+    private void btnAgotado1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado1MousePressed
+        btnAgotado1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado1MousePressed
+
+    private void btnAgotado1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado1MouseReleased
+        btnAgotado1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado1MouseReleased
+
+    private void btnAgotado2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado2MouseEntered
+        btnAgotado2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado2MouseEntered
+
+    private void btnAgotado2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado2MouseExited
+        btnAgotado2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado2MouseExited
+
+    private void btnAgotado2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado2MousePressed
+        btnAgotado2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado2MousePressed
+
+    private void btnAgotado2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado2MouseReleased
+        btnAgotado2.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado2MouseReleased
+
+    private void btnAgotado3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado3MouseEntered
+        btnAgotado3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado3MouseEntered
+
+    private void btnAgotado3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado3MouseExited
+        btnAgotado3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado3MouseExited
+
+    private void btnAgotado3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado3MousePressed
+        btnAgotado3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado3MousePressed
+
+    private void btnAgotado3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado3MouseReleased
+        btnAgotado3.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado3MouseReleased
+
+    private void btnAgotado4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado4MouseEntered
+        btnAgotado4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado4MouseEntered
+
+    private void btnAgotado4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado4MouseExited
+        btnAgotado4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado4MouseExited
+
+    private void btnAgotado4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado4MousePressed
+        btnAgotado4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado4MousePressed
+
+    private void btnAgotado4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado4MouseReleased
+        btnAgotado4.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado4MouseReleased
+
+    private void btnAgotado5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado5MouseEntered
+        btnAgotado5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado5MouseEntered
+
+    private void btnAgotado5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado5MouseExited
+        btnAgotado5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado5MouseExited
+
+    private void btnAgotado5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado5MousePressed
+        btnAgotado5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado5MousePressed
+
+    private void btnAgotado5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado5MouseReleased
+        btnAgotado5.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado5MouseReleased
+
+    private void btnAgotado6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado6MouseEntered
+        btnAgotado6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado6MouseEntered
+
+    private void btnAgotado6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado6MouseExited
+        btnAgotado6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado6MouseExited
+
+    private void btnAgotado6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado6MousePressed
+        btnAgotado6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado6MousePressed
+
+    private void btnAgotado6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado6MouseReleased
+        btnAgotado6.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado6MouseReleased
+
+    private void btnAgotado7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado7MouseEntered
+        btnAgotado7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado7MouseEntered
+
+    private void btnAgotado7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado7MouseExited
+        btnAgotado7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAgotado7MouseExited
+
+    private void btnAgotado7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado7MousePressed
+        btnAgotado7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+    }//GEN-LAST:event_btnAgotado7MousePressed
+
+    private void btnAgotado7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgotado7MouseReleased
+        btnAgotado7.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAgotado7MouseReleased
+
+    private void btnVendidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos1ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(0)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos1ActionPerformed
+
+    private void btnVendidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos2ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(1)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos2ActionPerformed
+
+    private void btnVendidos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos3ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(2)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos3ActionPerformed
+
+    private void btnVendidos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos4ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(3)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos4ActionPerformed
+
+    private void btnVendidos6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendidos6ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)vendidos.get(5)).get(0)).toString());
+    }//GEN-LAST:event_btnVendidos6ActionPerformed
+
+    private void btnAgotandose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose1ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(0)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose1ActionPerformed
+
+    private void btnAgotandose2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose2ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(1)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose2ActionPerformed
+
+    private void btnAgotandose3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose3ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(2)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose3ActionPerformed
+
+    private void btnAgotandose4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose4ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(3)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose4ActionPerformed
+
+    private void btnAgotandose5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose5ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(4)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose5ActionPerformed
+
+    private void btnAgotandose6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose6ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(5)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose6ActionPerformed
+
+    private void btnAgotandose7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotandose7ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotandose.get(6)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotandose7ActionPerformed
+
+    private void btnAgotado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado1ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(0)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado1ActionPerformed
+
+    private void btnAgotado2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado2ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(1)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado2ActionPerformed
+
+    private void btnAgotado3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado3ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(2)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado3ActionPerformed
+
+    private void btnAgotado4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado4ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(3)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado4ActionPerformed
+
+    private void btnAgotado5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado5ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(4)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado5ActionPerformed
+
+    private void btnAgotado6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado6ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(5)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado6ActionPerformed
+
+    private void btnAgotado7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgotado7ActionPerformed
+        productInfo pi=new productInfo((((ArrayList)agotados.get(6)).get(0)).toString());
+    }//GEN-LAST:event_btnAgotado7ActionPerformed
     private void changeButtons(String s){
         setButtonsNormal();
         switch(s){
@@ -2579,6 +3462,81 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnVentas.setSelected(false);
         repaint();
     }
+    private void checkVendidos(){
+        ArrayList btnVendidos=new ArrayList();
+        btnVendidos.add(btnVendidos1);
+        btnVendidos.add(btnVendidos2);
+        btnVendidos.add(btnVendidos3);
+        btnVendidos.add(btnVendidos4);
+        btnVendidos.add(btnVendidos5);
+        btnVendidos.add(btnVendidos6);
+        btnVendidos.add(btnVendidos7);
+        for(int i=6;i>=vendidos.size();i--){
+            ((JButton)(btnVendidos.get(i))).setVisible(false);
+        }
+        if(vendidos.size()>0){
+            for(int i=0;i<vendidos.size();i++){
+                String rec=(((ArrayList)vendidos.get(i)).get(1)).toString();
+                Image p=new ImageIcon(getClass().getResource(rec)).getImage();
+                p=p.getScaledInstance(140,130,java.awt.Image.SCALE_SMOOTH);
+                ImageIcon p2=new ImageIcon(p);
+             ((JButton)(btnVendidos.get(i))).setIcon(p2);
+            }   
+        }
+        else{
+            labelNothingVendido.setVisible(true);
+        }
+    }
+    private void checkAgotandose(){
+        ArrayList btnAgotandose=new ArrayList();
+        btnAgotandose.add(btnAgotandose1);
+        btnAgotandose.add(btnAgotandose2);
+        btnAgotandose.add(btnAgotandose3);
+        btnAgotandose.add(btnAgotandose4);
+        btnAgotandose.add(btnAgotandose5);
+        btnAgotandose.add(btnAgotandose6);
+        btnAgotandose.add(btnAgotandose7);
+        for(int i=6;i>=agotandose.size();i--){
+            ((JButton)(btnAgotandose.get(i))).setVisible(false);
+        }
+        if(agotandose.size()>0){
+            for(int i=0;i<agotandose.size();i++){
+                String rec=(((ArrayList)agotandose.get(i)).get(1)).toString();
+                Image p=new ImageIcon(getClass().getResource(rec)).getImage();
+                p=p.getScaledInstance(140,130,java.awt.Image.SCALE_SMOOTH);
+                ImageIcon p2=new ImageIcon(p);
+             ((JButton)(btnAgotandose.get(i))).setIcon(p2);
+            }
+        }
+        else{
+            labelNothingAgotandose.setVisible(true);
+        }
+    }
+    private void checkAgotados(){
+        ArrayList btnAgotados=new ArrayList();
+        btnAgotados.add(btnAgotado1);
+        btnAgotados.add(btnAgotado2);
+        btnAgotados.add(btnAgotado3);
+        btnAgotados.add(btnAgotado4);
+        btnAgotados.add(btnAgotado5);
+        btnAgotados.add(btnAgotado6);
+        btnAgotados.add(btnAgotado7);
+        for(int i=6;i>=agotados.size();i--){
+            ((JButton)(btnAgotados.get(i))).setVisible(false);
+        }
+        if(agotados.size()>0){
+            for(int i=0;i<agotandose.size();i++){
+                String rec=(((ArrayList)agotados.get(i)).get(1)).toString();
+                Image p=new ImageIcon(getClass().getResource(rec)).getImage();
+                p=p.getScaledInstance(140,130,java.awt.Image.SCALE_SMOOTH);
+                ImageIcon p2=new ImageIcon(p);
+             ((JButton)(btnAgotados.get(i))).setIcon(p2);
+            }
+        }
+        else{
+            labelNothingAgotado.setVisible(true);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -2610,7 +3568,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bambu_Soft().setVisible(true);
+                new Bambu_Soft("master").setVisible(true);
             }
         });
     }
@@ -2624,6 +3582,20 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnAccionEmpleado;
     private javax.swing.JButton btnAddImagenInventario;
     private javax.swing.JButton btnAddToCart;
+    private javax.swing.JButton btnAgotado1;
+    private javax.swing.JButton btnAgotado2;
+    private javax.swing.JButton btnAgotado3;
+    private javax.swing.JButton btnAgotado4;
+    private javax.swing.JButton btnAgotado5;
+    private javax.swing.JButton btnAgotado6;
+    private javax.swing.JButton btnAgotado7;
+    private javax.swing.JButton btnAgotandose1;
+    private javax.swing.JButton btnAgotandose2;
+    private javax.swing.JButton btnAgotandose3;
+    private javax.swing.JButton btnAgotandose4;
+    private javax.swing.JButton btnAgotandose5;
+    private javax.swing.JButton btnAgotandose6;
+    private javax.swing.JButton btnAgotandose7;
     private javax.swing.JToggleButton btnAñadirArticulo;
     private javax.swing.JToggleButton btnAñadirEmpleado;
     private javax.swing.JButton btnBorrarInventario;
@@ -2643,28 +3615,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearchInventario;
     private javax.swing.JToggleButton btnStats;
+    private javax.swing.JButton btnVendidos1;
+    private javax.swing.JButton btnVendidos2;
+    private javax.swing.JButton btnVendidos3;
+    private javax.swing.JButton btnVendidos4;
+    private javax.swing.JButton btnVendidos5;
+    private javax.swing.JButton btnVendidos6;
+    private javax.swing.JButton btnVendidos7;
     private javax.swing.JToggleButton btnVentas;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2676,7 +3634,6 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2697,8 +3654,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2725,6 +3682,10 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel labelImagenInventario;
+    private javax.swing.JLabel labelNothingAgotado;
+    private javax.swing.JLabel labelNothingAgotandose;
+    private javax.swing.JLabel labelNothingVendido;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelEmpleados;

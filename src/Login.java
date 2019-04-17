@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -93,7 +94,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnLogin);
-        btnLogin.setBounds(60, 170, 103, 29);
+        btnLogin.setBounds(50, 170, 103, 29);
 
         txtUser.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtUser.setForeground(new java.awt.Color(0, 0, 0));
@@ -115,8 +116,13 @@ public class Login extends javax.swing.JFrame {
                 txtUserMouseExited(evt);
             }
         });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtUser);
-        txtUser.setBounds(12, 34, 186, 24);
+        txtUser.setBounds(12, 34, 180, 24);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Usuario");
@@ -146,8 +152,13 @@ public class Login extends javax.swing.JFrame {
                 txtPasswordMouseExited(evt);
             }
         });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtPassword);
-        txtPassword.setBounds(12, 92, 186, 24);
+        txtPassword.setBounds(12, 92, 180, 24);
 
         labelError.setFont(new java.awt.Font("Dialog", 1, 9)); // NOI18N
         labelError.setForeground(new java.awt.Color(255, 0, 0));
@@ -215,6 +226,33 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusLost
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        verificar();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnLogin.setForeground(Color.BLACK);
+            btnLogin.setFont(new java.awt.Font("Dialog", 1, 11));
+            btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+            verificar();
+            btnLogin.setForeground(Color.BLACK);
+            btnLogin.setFont(new java.awt.Font("Dialog", 1, 12));
+            btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),1));
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            btnLogin.setForeground(Color.BLACK);
+            btnLogin.setFont(new java.awt.Font("Dialog", 1, 11));
+            btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+            verificar();
+            btnLogin.setForeground(Color.BLACK);
+            btnLogin.setFont(new java.awt.Font("Dialog", 1, 12));
+            btnLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),1));
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
+    private void verificar(){
         String usuario=txtUser.getText();
         String password=new String(txtPassword.getPassword());
         try{
@@ -223,13 +261,12 @@ public class Login extends javax.swing.JFrame {
                 labelError.setVisible(true);
             }
             else{
-                Bambu_Soft b=new Bambu_Soft();
+                Bambu_Soft b=new Bambu_Soft(usuario);
                 b.setVisible(true);
                 dispose();
             }
         }catch(Exception e){e.printStackTrace();}
-    }//GEN-LAST:event_btnLoginActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */

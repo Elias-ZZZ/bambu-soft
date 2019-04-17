@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 /**
  *
  * @author Elias-ZZZ
@@ -22,19 +23,18 @@ public class SQL {
     private final String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
     private final String username = "root";
     private final String password = "12345678";
-
-    private Connection conectarMySQL() {
-        Connection conn = null;
+    private Connection conexion;
+    public SQL() {
+        conexion = null;
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
+            conexion = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return conn;
+        
     }
     public boolean verificar(String usuario, String pass) throws Exception{
-        Connection conexion=conectarMySQL();
         boolean log=false;
         String sql="SELECT usuario, contraseña FROM empleados WHERE usuario LIKE '"+usuario+"';";
         Statement s=conexion.createStatement();
@@ -47,6 +47,66 @@ public class SQL {
             }
         }
         return log;
+    }
+    public void cerrarConexion() throws Exception{
+        conexion.close();
+    }
+    ArrayList vendidos, agotandose, agotados;
+    public void inicio() throws Exception{
+        vendidos=new ArrayList();
+        agotandose=new ArrayList();
+        agotados=new ArrayList();
+        ArrayList fila;
+        String sql="SELECT idProducto,imagen FROM productos ORDER BY numVentas DESC";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            fila=new ArrayList();
+            fila.add(rs.getString("idProducto"));
+            fila.add(rs.getString("imagen"));
+            vendidos.add(fila);
+        }
+        sql="SELECT idProducto,imagen FROM productos WHERE cantidad < 10 ORDER BY cantidad DESC;";
+        rs=s.executeQuery(sql);
+        while(rs.next()){
+            fila=new ArrayList();
+            fila.add(rs.getString("idProducto"));
+            fila.add(rs.getString("imagen"));
+            agotandose.add(fila);
+        }
+        sql="SELECT idProducto, imagen FROM productos WHERE cantidad=0;";
+        rs=s.executeQuery(sql);
+        while(rs.next()){
+            fila=new ArrayList();
+            fila.add(rs.getString("idProducto"));
+            fila.add(rs.getString("imagen"));
+            agotados.add(fila);
+        }
+    }
+    
+    public ArrayList getProductoById(String id)throws Exception{
+        ArrayList producto=new ArrayList();
+        String sql="SELECT * FROM productos WHERE idProducto="+id+";";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            producto.add(rs.getString("imagen"));
+            producto.add(rs.getString("articulo"));
+            producto.add(rs.getString("codigo_de_barras"));
+            producto.add(rs.getString("precio"));
+            producto.add(rs.getString("cantidad"));
+            producto.add(rs.getString("numVentas"));
+        }
+        return producto;
+    }
+    public ArrayList getVendidos(){
+        return vendidos;
+    }
+    public ArrayList getAgotandose(){
+        return agotandose;
+    }
+    public ArrayList getAgotados(){
+        return agotados;
     }
     
 
