@@ -45,11 +45,20 @@ public class productInfo extends javax.swing.JFrame {
         SQL sql=new SQL();
         ArrayList producto=new ArrayList();
         try{producto=sql.getProductoById(id);}catch(Exception e){e.printStackTrace();}
-        String rec=producto.get(0).toString();
-        Image p=new ImageIcon(getClass().getResource(rec)).getImage();
-        p=p.getScaledInstance(110,120,java.awt.Image.SCALE_SMOOTH);
-        ImageIcon p2=new ImageIcon(p);
-        labelImagen.setIcon(p2);
+        try{
+            String rec=producto.get(0).toString();
+            Image p=new ImageIcon(getClass().getResource(rec)).getImage();
+            p=p.getScaledInstance(110,120,java.awt.Image.SCALE_SMOOTH);
+            ImageIcon p2=new ImageIcon(p);
+            labelImagen.setIcon(p2);
+        }catch(NullPointerException e){
+            String rec="/img/productos/default.png";
+            Image p=new ImageIcon(getClass().getResource(rec)).getImage();
+            p=p.getScaledInstance(110,120,java.awt.Image.SCALE_SMOOTH);
+            ImageIcon p2=new ImageIcon(p);
+            labelImagen.setIcon(p2);
+        }
+        
         labelArticulo.setText(producto.get(1).toString());
         labelBarCode.setText(producto.get(2).toString());
         labelPrecio.setText(producto.get(3).toString());
