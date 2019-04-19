@@ -35,6 +35,7 @@ public class SQL {
         }
         
     }
+    
     public boolean verificar(String usuario, String pass) throws Exception{
         boolean log=false;
         String sql="SELECT usuario, contraseña FROM empleados WHERE usuario LIKE '"+usuario+"';";
@@ -49,6 +50,7 @@ public class SQL {
         }
         return log;
     }
+    
     public String getAdministrador(String usuario)throws Exception{
         String admin="No";
         String sql="SELECT administrador FROM empleados WHERE usuario LIKE '"+usuario+"';";
@@ -59,10 +61,13 @@ public class SQL {
         }
         return admin;
     }
+    
     public void cerrarConexion() throws Exception{
         conexion.close();
     }
+    
     ArrayList vendidos, agotandose, agotados;
+    
     public void inicio() throws Exception{
         vendidos=new ArrayList();
         agotandose=new ArrayList();
@@ -94,6 +99,7 @@ public class SQL {
             agotados.add(fila);
         }
     }
+    
     public ArrayList busquedaInventario(String q)throws Exception{
         ArrayList productos=new ArrayList();
         Object[] fila;
@@ -151,6 +157,7 @@ public class SQL {
         }
         return producto;
     }
+    
     public ArrayList getProductoById(String id)throws Exception{
         ArrayList producto=new ArrayList();
         String sql="SELECT * FROM productos WHERE idProducto="+id+";";
@@ -166,12 +173,15 @@ public class SQL {
         }
         return producto;
     }
+    
     public ArrayList getVendidos(){
         return vendidos;
     }
+    
     public ArrayList getAgotandose(){
         return agotandose;
     }
+    
     public ArrayList getAgotados(){
         return agotados;
     }
@@ -184,6 +194,7 @@ public class SQL {
         }
         s.executeUpdate();
     }
+    
     public void borrarArticulo(String codeBar, String articulo)throws Exception{
         String sql="DELETE FROM productos WHERE codigo_de_barras=? AND articulo=?;";
         PreparedStatement s=conexion.prepareStatement(sql);
@@ -192,7 +203,6 @@ public class SQL {
         s.executeUpdate();
     }
    
-    
     public void ActualizarRegistroInventario(String codeBar, String articulo, ArrayList datos)throws Exception{
         String sql="UPDATE productos SET articulo=?,codigo_de_barras=?,precio=?"
                 + ",cantidad=?,numVentas=?,imagen=? WHERE articulo='"+articulo+"' AND codigo_de_barras='"+codeBar+"';";
@@ -202,6 +212,7 @@ public class SQL {
         }
         s.executeUpdate();
     }
+    
     public ArrayList getAllEmpleados()throws Exception{
          ArrayList productos=new ArrayList();
         Object[] fila;
@@ -221,10 +232,95 @@ public class SQL {
         }
         return productos;
     }
-    public ArrayList getEmpleadoById(String id){
+   
+    public ArrayList getEmpleadoById(String id)throws Exception{
         ArrayList empleado=new ArrayList();
         String sql="SELECT * FROM empleados WHERE idEmpleado='"+id+"';";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            empleado.add(rs.getString("nombre"));
+            empleado.add(rs.getString("usuario"));
+            empleado.add(rs.getString("contraseña"));
+            empleado.add(rs.getString("administrador"));
+            empleado.add(rs.getString("telefono"));
+        }
         return empleado;
+    }
+    
+    public boolean insertarEmpleado(ArrayList empleado)throws Exception{
+        boolean error=false;
+        error=verificarUsuario(empleado.get(1).toString());
+        if(!error){
+            String sql="INSERT INTO empleados (idEmpleado,nombre,usuario,contraseña,administrador,telefono) VALUES (null,?,?,?,?,?);";
+            PreparedStatement s=conexion.prepareStatement(sql);
+            for(int i=0;i<empleado.size();i++){
+                s.setString(i+1,empleado.get(i).toString());
+            }
+            s.executeUpdate();
+        }
+        return error;
+    }
+    
+    private boolean verificarUsuario(String empleado)throws Exception{
+        boolean error=false;
+        String verificar="SELECT usuario FROM empleados";
+        Statement st=conexion.createStatement();
+        ResultSet rs=st.executeQuery(verificar);
+        while(rs.next()){
+            if(empleado.equals(rs.getString("usuario"))){
+                error=true;
+            }
+        }
+        return error;
+    }
+    
+    public boolean borrarEmpleado(String usuario){
+        boolean correcto=true;
+        String sql="DELETE FROM empleados WHERE usuario=?;";
+        try{
+            PreparedStatement s=conexion.prepareStatement(sql);
+            s.setString(1, usuario);
+            s.executeUpdate();
+        }catch(Exception e){
+            correcto=false;
+        }
+        return correcto;
+    }
+    public boolean actualizarEmpleado(ArrayList empleado,String id){
+        boolean correcto=true;
+        String sql="UPDATE empleados SET nombre=?,usuario=?,contraseña=?,administrador=?,telefono=? WHERE idEmpleado="+id+";";
+        String verificar="SELECT idEmpleado FROM empleados WHERE usuario='"+empleado.get(1).toString()+"';";
+        try{
+            Statement st=conexion.createStatement();
+            ResultSet rs=st.executeQuery(verificar);
+            if(verificarUsuario(empleado.get(1).toString())){
+                while(rs.next()){
+                    if(rs.getString("idEmpleado").equals(id)){
+                        //inserta
+                        PreparedStatement s=conexion.prepareStatement(sql);
+                        for(int i=0;i<empleado.size();i++){
+                            s.setString(i+1,empleado.get(i).toString());
+                        }
+                        s.executeUpdate();
+                    }
+                    else{
+                        //no inserta
+                        correcto=false;
+                    }
+                }
+            }
+            else{
+                //inserta
+                PreparedStatement s=conexion.prepareStatement(sql);
+                for(int i=0;i<empleado.size();i++){
+                    s.setString(i+1,empleado.get(i).toString());
+                }
+                s.executeUpdate();
+            }
+        }
+        catch(Exception e){correcto=false;}
+        return correcto;
     }
 
 }

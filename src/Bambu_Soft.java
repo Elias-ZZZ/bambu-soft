@@ -69,6 +69,9 @@ private ArrayList vendidos, agotandose, agotados;
             btnInventario.setVisible(false);
             btnEmpleados.setVisible(false);
         }
+        
+        
+        
         btnAbout.setVisible(false);
         checkVendidos();
         checkAgotandose();
@@ -222,12 +225,12 @@ private ArrayList vendidos, agotandose, agotados;
         jSeparator16 = new javax.swing.JSeparator();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
+        txtTelefonoEmpleado = new javax.swing.JTextField();
         txtNombreEmpleado = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtUsuarioEmpleado = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
+        txtPassEmpleado = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         btnActualizarEmpleado = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
@@ -1891,26 +1894,26 @@ private ArrayList vendidos, agotandose, agotados;
         panelEmpleados.add(jLabel34);
         jLabel34.setBounds(330, 120, 70, 16);
 
-        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
-        txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtTelefonoEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        txtTelefonoEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtTelefonoEmpleado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefonoFocusGained(evt);
+                txtTelefonoEmpleadoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTelefonoFocusLost(evt);
+                txtTelefonoEmpleadoFocusLost(evt);
             }
         });
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtTelefonoEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseEntered(evt);
+                txtTelefonoEmpleadoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseExited(evt);
+                txtTelefonoEmpleadoMouseExited(evt);
             }
         });
-        panelEmpleados.add(txtTelefono);
-        txtTelefono.setBounds(330, 140, 260, 30);
+        panelEmpleados.add(txtTelefonoEmpleado);
+        txtTelefonoEmpleado.setBounds(330, 140, 260, 30);
 
         txtNombreEmpleado.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
@@ -1938,57 +1941,57 @@ private ArrayList vendidos, agotandose, agotados;
         panelEmpleados.add(jLabel35);
         jLabel35.setBounds(40, 60, 130, 16);
 
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtUsuarioEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        txtUsuarioEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtUsuarioEmpleado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsuarioFocusGained(evt);
+                txtUsuarioEmpleadoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsuarioFocusLost(evt);
+                txtUsuarioEmpleadoFocusLost(evt);
             }
         });
-        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtUsuarioEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtUsuarioMouseEntered(evt);
+                txtUsuarioEmpleadoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtUsuarioMouseExited(evt);
+                txtUsuarioEmpleadoMouseExited(evt);
             }
         });
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuarioEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtUsuarioEmpleadoActionPerformed(evt);
             }
         });
-        panelEmpleados.add(txtUsuario);
-        txtUsuario.setBounds(40, 140, 260, 30);
+        panelEmpleados.add(txtUsuarioEmpleado);
+        txtUsuarioEmpleado.setBounds(40, 140, 260, 30);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Usuario");
         panelEmpleados.add(jLabel36);
         jLabel36.setBounds(40, 120, 50, 16);
 
-        txtPass.setForeground(new java.awt.Color(0, 0, 0));
-        txtPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtPassEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        txtPassEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtPassEmpleado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPassFocusGained(evt);
+                txtPassEmpleadoFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPassFocusLost(evt);
+                txtPassEmpleadoFocusLost(evt);
             }
         });
-        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPassEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtPassMouseEntered(evt);
+                txtPassEmpleadoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtPassMouseExited(evt);
+                txtPassEmpleadoMouseExited(evt);
             }
         });
-        panelEmpleados.add(txtPass);
-        txtPass.setBounds(330, 80, 260, 30);
+        panelEmpleados.add(txtPassEmpleado);
+        txtPassEmpleado.setBounds(330, 80, 260, 30);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Administrador");
@@ -2012,6 +2015,11 @@ private ArrayList vendidos, agotandose, agotados;
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnActualizarEmpleadoMouseReleased(evt);
+            }
+        });
+        btnActualizarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarEmpleadoActionPerformed(evt);
             }
         });
         panelEmpleados.add(btnActualizarEmpleado);
@@ -2085,6 +2093,11 @@ private ArrayList vendidos, agotandose, agotados;
                 btnBorrarEmpleadoMouseReleased(evt);
             }
         });
+        btnBorrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarEmpleadoActionPerformed(evt);
+            }
+        });
         panelEmpleados.add(btnBorrarEmpleado);
         btnBorrarEmpleado.setBounds(180, 180, 120, 30);
 
@@ -2105,6 +2118,11 @@ private ArrayList vendidos, agotandose, agotados;
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnAddEmpleadoMouseReleased(evt);
+            }
+        });
+        btnAddEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmpleadoActionPerformed(evt);
             }
         });
         panelEmpleados.add(btnAddEmpleado);
@@ -3165,6 +3183,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnActualizarEmpleado.setVisible(true);
             btnBorrarEmpleado.setVisible(true);
             btnAddEmpleado.setVisible(false);
+            TableEmpleados.setEnabled(true);
+            limpiarCamposEmpleado();
         }
         else{
             btnBuscarEmpleado.setForeground(Color.BLACK);
@@ -3173,9 +3193,21 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnActualizarEmpleado.setVisible(false);
             btnBorrarEmpleado.setVisible(false);
             btnAddEmpleado.setVisible(true);
+            TableEmpleados.setEnabled(false);
+            limpiarCamposEmpleado();
         }
     }//GEN-LAST:event_btnBuscarEmpleadoActionPerformed
 
+    private void limpiarCamposEmpleado(){
+        txtNombreEmpleado.setText("");
+        txtUsuarioEmpleado.setText("");
+        txtPassEmpleado.setText("");
+        txtTelefonoEmpleado.setText("");
+        btnAdministradorEmpleado.setText("No");
+        btnAdministradorEmpleado.setForeground(Color.BLACK);
+        btnAdministradorEmpleado.setSelected(true);
+    }
+    
     private void btnAñadirEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirEmpleadoMouseEntered
         btnAñadirEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
         
@@ -3208,6 +3240,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnAddEmpleado.setVisible(true);
             btnActualizarEmpleado.setVisible(false);
             btnBorrarEmpleado.setVisible(false);
+            TableEmpleados.setEnabled(false);
+            limpiarCamposEmpleado();
         }
         else{
             btnAñadirEmpleado.setForeground(Color.BLACK);
@@ -3216,25 +3250,27 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnAddEmpleado.setVisible(false);
             btnActualizarEmpleado.setVisible(true);
             btnBorrarEmpleado.setVisible(true);
+            TableEmpleados.setEnabled(true);
+            limpiarCamposEmpleado();
         }
     }//GEN-LAST:event_btnAñadirEmpleadoActionPerformed
 
-    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
-        txtTelefono.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtTelefonoFocusGained
+    private void txtTelefonoEmpleadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoFocusGained
+        txtTelefonoEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtTelefonoEmpleadoFocusGained
 
-    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
-        txtTelefono.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtTelefonoFocusLost
+    private void txtTelefonoEmpleadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoFocusLost
+        txtTelefonoEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtTelefonoEmpleadoFocusLost
 
-    private void txtTelefonoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseEntered
-        txtTelefono.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtTelefonoMouseEntered
+    private void txtTelefonoEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoMouseEntered
+        txtTelefonoEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtTelefonoEmpleadoMouseEntered
 
-    private void txtTelefonoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseExited
-        if(!(txtTelefono.isFocusOwner()))
-            txtTelefono.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtTelefonoMouseExited
+    private void txtTelefonoEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoMouseExited
+        if(!(txtTelefonoEmpleado.isFocusOwner()))
+            txtTelefonoEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtTelefonoEmpleadoMouseExited
 
     private void txtNombreEmpleadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoFocusGained
         txtNombreEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
@@ -3253,39 +3289,39 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             txtNombreEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_txtNombreEmpleadoMouseExited
 
-    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-        txtUsuario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtUsuarioFocusGained
+    private void txtUsuarioEmpleadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioEmpleadoFocusGained
+        txtUsuarioEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtUsuarioEmpleadoFocusGained
 
-    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
-        txtUsuario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtUsuarioFocusLost
+    private void txtUsuarioEmpleadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioEmpleadoFocusLost
+        txtUsuarioEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtUsuarioEmpleadoFocusLost
 
-    private void txtUsuarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseEntered
-        txtUsuario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtUsuarioMouseEntered
+    private void txtUsuarioEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioEmpleadoMouseEntered
+        txtUsuarioEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtUsuarioEmpleadoMouseEntered
 
-    private void txtUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMouseExited
-        if(!(txtUsuario.isFocusOwner()))
-            txtUsuario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtUsuarioMouseExited
+    private void txtUsuarioEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioEmpleadoMouseExited
+        if(!(txtUsuarioEmpleado.isFocusOwner()))
+            txtUsuarioEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtUsuarioEmpleadoMouseExited
 
-    private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
-        txtPass.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtPassFocusGained
+    private void txtPassEmpleadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassEmpleadoFocusGained
+        txtPassEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtPassEmpleadoFocusGained
 
-    private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
-        txtPass.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtPassFocusLost
+    private void txtPassEmpleadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassEmpleadoFocusLost
+        txtPassEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPassEmpleadoFocusLost
 
-    private void txtPassMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseEntered
-        txtPass.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtPassMouseEntered
+    private void txtPassEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassEmpleadoMouseEntered
+        txtPassEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtPassEmpleadoMouseEntered
 
-    private void txtPassMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseExited
-        if(!(txtPass.isFocusOwner()))
-            txtPass.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtPassMouseExited
+    private void txtPassEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassEmpleadoMouseExited
+        if(!(txtPassEmpleado.isFocusOwner()))
+            txtPassEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtPassEmpleadoMouseExited
 
     private void btnActualizarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoMouseEntered
         btnActualizarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
@@ -3305,9 +3341,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnActualizarEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
     }//GEN-LAST:event_btnActualizarEmpleadoMouseReleased
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtUsuarioEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioEmpleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtUsuarioEmpleadoActionPerformed
 
     private void btnVendidos1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendidos1MouseEntered
         btnVendidos1.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
@@ -3755,7 +3791,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         if(!(txtUnidadesVendidasInventario.isFocusOwner()))
             txtUnidadesVendidasInventario.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_txtUnidadesVendidasInventarioMouseExited
+    
     String respaldoCodeBar,respaldoArticulo;
+    
     private void TableInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableInventarioMouseClicked
         if(TableInventario.isEnabled()){  
             Point point=evt.getPoint();
@@ -3847,6 +3885,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             }catch(Exception e){e.printStackTrace();}
         }
     }//GEN-LAST:event_btnAddInventarioActionPerformed
+    
     private ArrayList getDatosInventario(){
         boolean error=false;
         ArrayList datos=new ArrayList();
@@ -3884,6 +3923,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         }
         return datos;
     }
+    
     private void btnAddImagenInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddImagenInventarioActionPerformed
         JFileChooser jfc=new JFileChooser();
         jfc.setMultiSelectionEnabled(false);
@@ -3960,14 +4000,39 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnAddEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
         btnAddEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
     }//GEN-LAST:event_btnAddEmpleadoMouseReleased
-
+    String idEmpleado, copiaIdEmpleado;
     private void TableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEmpleadosMouseClicked
         if(TableEmpleados.isEnabled()){  
             Point point=evt.getPoint();
             int fila=TableEmpleados.rowAtPoint(point);
+            idEmpleado=TableEmpleados.getValueAt(fila,0).toString();
+            copiaIdEmpleado=idEmpleado;
+            try{
+                ArrayList empleado=sql.getEmpleadoById(idEmpleado);
+                idEmpleado="";
+                llenarCamposEmpleado(empleado);
+            }catch(Exception e){e.printStackTrace();}
         }
     }//GEN-LAST:event_TableEmpleadosMouseClicked
 
+    private void llenarCamposEmpleado(ArrayList empleado){
+        txtNombreEmpleado.setText(empleado.get(0).toString());
+        txtUsuarioEmpleado.setText(empleado.get(1).toString());
+        txtPassEmpleado.setText(empleado.get(2).toString());
+        txtTelefonoEmpleado.setText(empleado.get(4).toString());
+        if(empleado.get(3).toString().equals("Si")){
+            btnAdministradorEmpleado.setSelected(false);
+            btnAdministradorEmpleado.setForeground(Color.WHITE);
+            btnAdministradorEmpleado.setText(empleado.get(3).toString());
+        }
+        else{
+            btnAdministradorEmpleado.setSelected(true);
+            btnAdministradorEmpleado.setForeground(Color.BLACK);
+            btnAdministradorEmpleado.setText(empleado.get(3).toString());
+        }
+    }
+    
+    
     private void btnAdministradorEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoMouseEntered
         btnAdministradorEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
     }//GEN-LAST:event_btnAdministradorEmpleadoMouseEntered
@@ -3998,7 +4063,99 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             btnAdministradorEmpleado.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_btnAdministradorEmpleadoActionPerformed
+
+    private void btnAddEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpleadoActionPerformed
+        ArrayList empleado=getDatosEmpleado();
+        if(empleado.size()>0){
+            try{
+                if(!sql.insertarEmpleado(empleado)){
+                    actualizarTabla(TableEmpleados,sql.getAllEmpleados());
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El nombre de usuario no esta disponible","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }catch(Exception e){e.printStackTrace();}
+        }
+    }//GEN-LAST:event_btnAddEmpleadoActionPerformed
+
+    private void btnBorrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarEmpleadoActionPerformed
+        String usuario=txtUsuarioEmpleado.getText();
+        if(!usuario.equals("")){
+            int opcion=JOptionPane.showConfirmDialog(null,"El usuario "+usuario+" sera ELIMINADO, ¿Deseas continuar?"
+            ,"Advertencia",JOptionPane.YES_NO_OPTION,2);        
+            if(opcion==0){
+                if(sql.borrarEmpleado(usuario)){
+                    JOptionPane.showMessageDialog(null,"Empleado borrado correctamente",
+                            "Correcto",JOptionPane.INFORMATION_MESSAGE);
+                    try{
+                        actualizarTabla(TableEmpleados,sql.getAllEmpleados());
+                        limpiarCamposEmpleado();
+                    }catch(Exception e){e.printStackTrace();}
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"No fue posible eliminar al empleado "+usuario,
+                            "Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Debes seleccionar un usuario para borrarlo","Advertencia",2);
+        }
+    }//GEN-LAST:event_btnBorrarEmpleadoActionPerformed
+
+    private void btnActualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoActionPerformed
+        ArrayList empleadoU=getDatosEmpleado();
+        try{
+            if(sql.actualizarEmpleado(empleadoU,copiaIdEmpleado)){
+                JOptionPane.showMessageDialog(null,"Empleado actualizado","Correcto",JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla(TableEmpleados,sql.getAllEmpleados());
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Ha ocurrido un error, por favor verifica que el usuario no este repetido",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+    }//GEN-LAST:event_btnActualizarEmpleadoActionPerformed
+    
+    private ArrayList getDatosEmpleado(){
+        ArrayList empleado=new ArrayList();
+        String nombre,usuario,pass,telefono,admin;
+        nombre=txtNombreEmpleado.getText();
+        usuario=txtUsuarioEmpleado.getText();
+        pass=txtPassEmpleado.getText();
+        telefono=txtTelefonoEmpleado.getText();
+        admin=btnAdministradorEmpleado.getText();
+        if(!verificarDatosEmpleado(nombre,usuario,pass,telefono)){
+            empleado.add(nombre);
+            empleado.add(usuario);
+            empleado.add(pass);
+            empleado.add(admin);
+            empleado.add(telefono);
+        }
+        return empleado;
+    }
+    
+    private boolean verificarDatosEmpleado(String nombre,String usuario,String pass, String telefono){
+        boolean error=true;
+        if(!nombre.equals("")&&!usuario.equals("")&&!pass.equals("")&&!telefono.equals("")){
+            try{
+                long num=Integer.parseInt(telefono);
+                error=false;
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"El numero de telefono es invalido","Advertencia",2);
+            }
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Llena todos los campos para continuar","Advertencia",2);
+        }
+        return error;
+    }
+    
+    
     String rutaImagen;
+    
     private void copiarImagen(File a){
         try{
             rutaImagen="/img/productos/"+a.getName();
@@ -4011,6 +4168,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         }catch(Exception e){e.printStackTrace();}
         
     }
+    
     private void limpiarCamposInventario(){
         txtArticuloInventario.setText("");
         txtPrecioInventario.setText("");
@@ -4019,6 +4177,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         txtBarCodeInventario.setText("");
         labelImagenInventario.setIcon(null);
     }
+    
     private void buscarInventario(){
         String busqueda=txtSearchInventario.getText();
         try{
@@ -4031,6 +4190,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             actualizarTabla(TableInventario,productosInventario);
         }catch(Exception e){e.printStackTrace();}
     }
+    
     private void actualizarTabla(JTable tabla,ArrayList datos){
         DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
         if(modelo.getRowCount()>=0){
@@ -4042,7 +4202,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             modelo.addRow((Object[])datos.get(i));
         }
     }
+    
     ArrayList productosInventario=new ArrayList();
+    
     private void changeButtons(String s){
         setButtonsNormal();
         switch(s){
@@ -4079,6 +4241,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         }
         repaint();
     }
+    
     private void setButtonsNormal(){
         btnEmpleados.setForeground(new java.awt.Color(255,255,255));
         btnEmpleados.setEnabled(true);
@@ -4100,6 +4263,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnVentas.setSelected(false);
         repaint();
     }
+    
     private void checkVendidos(){
         ArrayList btnVendidos=new ArrayList();
         btnVendidos.add(btnVendidos1);
@@ -4130,6 +4294,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             labelNothingVendido.setVisible(true);
         }
     }
+    
     private void setDefaultImageButton(JButton boton){
         String rec="/img/productos/default.png";
         Image p=new ImageIcon(getClass().getResource(rec)).getImage();
@@ -4137,6 +4302,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         ImageIcon p2=new ImageIcon(p);
         ((JButton)(boton)).setIcon(p2);
     }
+    
     private void checkAgotandose(){
         ArrayList btnAgotandose=new ArrayList();
         btnAgotandose.add(btnAgotandose1);
@@ -4166,6 +4332,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             labelNothingAgotandose.setVisible(true);
         }
     }
+    
     private void checkAgotados(){
         ArrayList btnAgotados=new ArrayList();
         btnAgotados.add(btnAgotado1);
@@ -4195,6 +4362,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             labelNothingAgotado.setVisible(true);
         }
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -4366,14 +4534,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JTextField txtBarCodeInventario;
     private javax.swing.JTextField txtCantidadInventario;
     private javax.swing.JTextField txtNombreEmpleado;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JTextField txtPassEmpleado;
     private javax.swing.JTextField txtPayment;
     private javax.swing.JTextField txtPrecioInventario;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtSearchInventario;
     private javax.swing.JTextField txtSearchVentas;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTelefonoEmpleado;
     private javax.swing.JTextField txtUnidadesVendidasInventario;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtUsuarioEmpleado;
     // End of variables declaration//GEN-END:variables
 }
