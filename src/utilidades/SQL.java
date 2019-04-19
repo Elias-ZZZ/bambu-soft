@@ -49,6 +49,16 @@ public class SQL {
         }
         return log;
     }
+    public String getAdministrador(String usuario)throws Exception{
+        String admin="No";
+        String sql="SELECT administrador FROM empleados WHERE usuario LIKE '"+usuario+"';";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            admin=rs.getString("administrador");
+        }
+        return admin;
+    }
     public void cerrarConexion() throws Exception{
         conexion.close();
     }
@@ -204,11 +214,17 @@ public class SQL {
                 rs.getString("nombre"),
                 rs.getString("usuario"),
                 rs.getString("contraseña"),
+                rs.getString("administrador"),
                 rs.getString("telefono")
             };
             productos.add(fila);
         }
         return productos;
+    }
+    public ArrayList getEmpleadoById(String id){
+        ArrayList empleado=new ArrayList();
+        String sql="SELECT * FROM empleados WHERE idEmpleado='"+id+"';";
+        return empleado;
     }
 
 }

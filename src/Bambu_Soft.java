@@ -53,7 +53,7 @@ private SQL sql;
 private ArrayList vendidos, agotandose, agotados;
         
     
-    public Bambu_Soft(String usuario) {
+    public Bambu_Soft(String usuario, String admin) {
         sql=new SQL();
         try{
             sql.inicio();
@@ -64,6 +64,12 @@ private ArrayList vendidos, agotandose, agotados;
         UIManager.put("ToggleButton.select", Color.WHITE);
         UIManager.put("Button.select", Color.WHITE);
         initComponents();
+        if(admin.equals("No")){
+            btnStats.setVisible(false);
+            btnInventario.setVisible(false);
+            btnEmpleados.setVisible(false);
+        }
+        btnAbout.setVisible(false);
         checkVendidos();
         checkAgotandose();
         checkAgotados();
@@ -223,11 +229,15 @@ private ArrayList vendidos, agotandose, agotados;
         jLabel36 = new javax.swing.JLabel();
         txtPass = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        btnAccionEmpleado = new javax.swing.JButton();
+        btnActualizarEmpleado = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
         jSeparator17 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         TableEmpleados = new javax.swing.JTable();
+        btnBorrarEmpleado = new javax.swing.JButton();
+        btnAddEmpleado = new javax.swing.JButton();
+        btnAdministradorEmpleado = new javax.swing.JToggleButton();
+        jLabel41 = new javax.swing.JLabel();
         panelNav = new javax.swing.JPanel();
         labelUsuario = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
@@ -1879,7 +1889,7 @@ private ArrayList vendidos, agotandose, agotados;
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Teléfono");
         panelEmpleados.add(jLabel34);
-        jLabel34.setBounds(370, 120, 70, 16);
+        jLabel34.setBounds(330, 120, 70, 16);
 
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
@@ -1900,7 +1910,7 @@ private ArrayList vendidos, agotandose, agotados;
             }
         });
         panelEmpleados.add(txtTelefono);
-        txtTelefono.setBounds(370, 140, 260, 30);
+        txtTelefono.setBounds(330, 140, 260, 30);
 
         txtNombreEmpleado.setForeground(new java.awt.Color(0, 0, 0));
         txtNombreEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
@@ -1978,34 +1988,34 @@ private ArrayList vendidos, agotandose, agotados;
             }
         });
         panelEmpleados.add(txtPass);
-        txtPass.setBounds(370, 80, 260, 30);
+        txtPass.setBounds(330, 80, 260, 30);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel37.setText("Contraseña");
+        jLabel37.setText("Administrador");
         panelEmpleados.add(jLabel37);
-        jLabel37.setBounds(370, 60, 70, 16);
+        jLabel37.setBounds(620, 60, 100, 16);
 
-        btnAccionEmpleado.setBackground(new java.awt.Color(255, 255, 255));
-        btnAccionEmpleado.setForeground(new java.awt.Color(0, 0, 0));
-        btnAccionEmpleado.setText("Borrar");
-        btnAccionEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        btnAccionEmpleado.setFocusPainted(false);
-        btnAccionEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnActualizarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        btnActualizarEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        btnActualizarEmpleado.setText("Actualizar");
+        btnActualizarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnActualizarEmpleado.setFocusPainted(false);
+        btnActualizarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAccionEmpleadoMouseEntered(evt);
+                btnActualizarEmpleadoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAccionEmpleadoMouseExited(evt);
+                btnActualizarEmpleadoMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAccionEmpleadoMousePressed(evt);
+                btnActualizarEmpleadoMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnAccionEmpleadoMouseReleased(evt);
+                btnActualizarEmpleadoMouseReleased(evt);
             }
         });
-        panelEmpleados.add(btnAccionEmpleado);
-        btnAccionEmpleado.setBounds(40, 180, 120, 30);
+        panelEmpleados.add(btnActualizarEmpleado);
+        btnActualizarEmpleado.setBounds(40, 180, 120, 30);
 
         jLabel38.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
@@ -2022,11 +2032,11 @@ private ArrayList vendidos, agotandose, agotados;
 
             },
             new String [] {
-                "Numero de empleado", "Nombre", "Usuario", "Contraseña", "Telefono"
+                "Numero de empleado", "Nombre", "Usuario", "Contraseña", "Administrador", "Telefono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2038,6 +2048,11 @@ private ArrayList vendidos, agotandose, agotados;
         TableEmpleados.getTableHeader().setReorderingAllowed(false);
         TableEmpleados.getTableHeader().setBackground(new java.awt.Color(140,61,168));
         TableEmpleados.getTableHeader().setBorder(BorderFactory.createLineBorder(new java.awt.Color(255,255,255), 1));
+        TableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableEmpleadosMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(TableEmpleados);
         if (TableEmpleados.getColumnModel().getColumnCount() > 0) {
             TableEmpleados.getColumnModel().getColumn(0).setResizable(false);
@@ -2045,10 +2060,88 @@ private ArrayList vendidos, agotandose, agotados;
             TableEmpleados.getColumnModel().getColumn(2).setResizable(false);
             TableEmpleados.getColumnModel().getColumn(3).setResizable(false);
             TableEmpleados.getColumnModel().getColumn(4).setResizable(false);
+            TableEmpleados.getColumnModel().getColumn(5).setResizable(false);
         }
 
         panelEmpleados.add(jScrollPane4);
-        jScrollPane4.setBounds(40, 280, 1090, 350);
+        jScrollPane4.setBounds(40, 280, 1100, 350);
+
+        btnBorrarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        btnBorrarEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        btnBorrarEmpleado.setText("Borrar");
+        btnBorrarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnBorrarEmpleado.setFocusPainted(false);
+        btnBorrarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBorrarEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBorrarEmpleadoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBorrarEmpleadoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnBorrarEmpleadoMouseReleased(evt);
+            }
+        });
+        panelEmpleados.add(btnBorrarEmpleado);
+        btnBorrarEmpleado.setBounds(180, 180, 120, 30);
+
+        btnAddEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        btnAddEmpleado.setText("Añadir");
+        btnAddEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAddEmpleado.setFocusPainted(false);
+        btnAddEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddEmpleadoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAddEmpleadoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAddEmpleadoMouseReleased(evt);
+            }
+        });
+        panelEmpleados.add(btnAddEmpleado);
+        btnAddEmpleado.setBounds(40, 180, 120, 30);
+
+        btnAdministradorEmpleado.setBackground(new java.awt.Color(140, 61, 168));
+        btnAdministradorEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        btnAdministradorEmpleado.setSelected(true);
+        btnAdministradorEmpleado.setText("No");
+        btnAdministradorEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnAdministradorEmpleado.setFocusPainted(false);
+        btnAdministradorEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAdministradorEmpleadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAdministradorEmpleadoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnAdministradorEmpleadoMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnAdministradorEmpleadoMouseReleased(evt);
+            }
+        });
+        btnAdministradorEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministradorEmpleadoActionPerformed(evt);
+            }
+        });
+        panelEmpleados.add(btnAdministradorEmpleado);
+        btnAdministradorEmpleado.setBounds(620, 80, 130, 30);
+
+        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel41.setText("Contraseña");
+        panelEmpleados.add(jLabel41);
+        jLabel41.setBounds(330, 60, 70, 16);
 
         panelContent.add(panelEmpleados, "pnlEmpleados");
 
@@ -3049,12 +3142,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnBuscarEmpleadoMouseEntered
 
     private void btnBuscarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarEmpleadoMouseExited
-        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+        btnBuscarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_btnBuscarEmpleadoMouseExited
 
     private void btnBuscarEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarEmpleadoMousePressed
         btnBuscarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
         btnBuscarEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+        if(!btnBuscarEmpleado.isSelected())
+            btnBuscarEmpleado.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnBuscarEmpleadoMousePressed
 
     private void btnBuscarEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarEmpleadoMouseReleased
@@ -3063,7 +3158,22 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnBuscarEmpleadoMouseReleased
 
     private void btnBuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEmpleadoActionPerformed
-        
+        if(!btnBuscarEmpleado.isSelected()){ 
+            btnBuscarEmpleado.setForeground(Color.WHITE);
+            btnAñadirEmpleado.setForeground(Color.BLACK);
+            btnAñadirEmpleado.setSelected(true);
+            btnActualizarEmpleado.setVisible(true);
+            btnBorrarEmpleado.setVisible(true);
+            btnAddEmpleado.setVisible(false);
+        }
+        else{
+            btnBuscarEmpleado.setForeground(Color.BLACK);
+            btnAñadirEmpleado.setForeground(Color.WHITE);
+            btnAñadirEmpleado.setSelected(false);
+            btnActualizarEmpleado.setVisible(false);
+            btnBorrarEmpleado.setVisible(false);
+            btnAddEmpleado.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarEmpleadoActionPerformed
 
     private void btnAñadirEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirEmpleadoMouseEntered
@@ -3072,7 +3182,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnAñadirEmpleadoMouseEntered
 
     private void btnAñadirEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirEmpleadoMouseExited
-        btnMostrarTodoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+        btnAñadirEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
         
     }//GEN-LAST:event_btnAñadirEmpleadoMouseExited
 
@@ -3080,6 +3190,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         
         btnAñadirEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
         btnAñadirEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+        if(!btnAñadirEmpleado.isSelected()){
+            btnAñadirEmpleado.setForeground(Color.BLACK);
+        }
     }//GEN-LAST:event_btnAñadirEmpleadoMousePressed
 
     private void btnAñadirEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAñadirEmpleadoMouseReleased
@@ -3088,7 +3201,22 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnAñadirEmpleadoMouseReleased
 
     private void btnAñadirEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirEmpleadoActionPerformed
-        // TODO add your handling code here:
+        if(!btnAñadirEmpleado.isSelected()){
+            btnAñadirEmpleado.setForeground(Color.WHITE);
+            btnBuscarEmpleado.setForeground(Color.BLACK);
+            btnBuscarEmpleado.setSelected(true);
+            btnAddEmpleado.setVisible(true);
+            btnActualizarEmpleado.setVisible(false);
+            btnBorrarEmpleado.setVisible(false);
+        }
+        else{
+            btnAñadirEmpleado.setForeground(Color.BLACK);
+            btnBuscarEmpleado.setForeground(Color.WHITE);
+            btnBuscarEmpleado.setSelected(false);
+            btnAddEmpleado.setVisible(false);
+            btnActualizarEmpleado.setVisible(true);
+            btnBorrarEmpleado.setVisible(true);
+        }
     }//GEN-LAST:event_btnAñadirEmpleadoActionPerformed
 
     private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
@@ -3159,23 +3287,23 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             txtPass.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
     }//GEN-LAST:event_txtPassMouseExited
 
-    private void btnAccionEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccionEmpleadoMouseEntered
-        btnAccionEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_btnAccionEmpleadoMouseEntered
+    private void btnActualizarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoMouseEntered
+        btnActualizarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnActualizarEmpleadoMouseEntered
 
-    private void btnAccionEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccionEmpleadoMouseExited
-        btnAccionEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_btnAccionEmpleadoMouseExited
+    private void btnActualizarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoMouseExited
+        btnActualizarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnActualizarEmpleadoMouseExited
 
-    private void btnAccionEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccionEmpleadoMousePressed
-        btnAccionEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
-        btnAccionEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
-    }//GEN-LAST:event_btnAccionEmpleadoMousePressed
+    private void btnActualizarEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoMousePressed
+        btnActualizarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnActualizarEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnActualizarEmpleadoMousePressed
 
-    private void btnAccionEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccionEmpleadoMouseReleased
-        btnAccionEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-        btnAccionEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
-    }//GEN-LAST:event_btnAccionEmpleadoMouseReleased
+    private void btnActualizarEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoMouseReleased
+        btnActualizarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnActualizarEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnActualizarEmpleadoMouseReleased
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
@@ -3686,6 +3814,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         try{
             sql.ActualizarRegistroInventario(respaldoCodeBar,respaldoArticulo,datos);
             actualizarTabla(TableInventario,sql.getAllProductos());
+            limpiarCamposInventario();
         }catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_btnActualizarInventarioActionPerformed
 
@@ -3795,6 +3924,80 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             ,"Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBorrarInventarioActionPerformed
+
+    private void btnBorrarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarEmpleadoMouseEntered
+        btnBorrarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnBorrarEmpleadoMouseEntered
+
+    private void btnBorrarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarEmpleadoMouseExited
+        btnBorrarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnBorrarEmpleadoMouseExited
+
+    private void btnBorrarEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarEmpleadoMousePressed
+        btnBorrarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnBorrarEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnBorrarEmpleadoMousePressed
+
+    private void btnBorrarEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarEmpleadoMouseReleased
+        btnBorrarEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnBorrarEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnBorrarEmpleadoMouseReleased
+
+    private void btnAddEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmpleadoMouseEntered
+        btnAddEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAddEmpleadoMouseEntered
+
+    private void btnAddEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmpleadoMouseExited
+        btnAddEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAddEmpleadoMouseExited
+
+    private void btnAddEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmpleadoMousePressed
+        btnAddEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnAddEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnAddEmpleadoMousePressed
+
+    private void btnAddEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmpleadoMouseReleased
+        btnAddEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnAddEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnAddEmpleadoMouseReleased
+
+    private void TableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEmpleadosMouseClicked
+        if(TableEmpleados.isEnabled()){  
+            Point point=evt.getPoint();
+            int fila=TableEmpleados.rowAtPoint(point);
+        }
+    }//GEN-LAST:event_TableEmpleadosMouseClicked
+
+    private void btnAdministradorEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoMouseEntered
+        btnAdministradorEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnAdministradorEmpleadoMouseEntered
+
+    private void btnAdministradorEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoMouseExited
+        btnAdministradorEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnAdministradorEmpleadoMouseExited
+
+    private void btnAdministradorEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoMousePressed
+        btnAdministradorEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnAdministradorEmpleado.setFont(new java.awt.Font("Dialog", 1, 11));
+        if(!btnAdministradorEmpleado.isSelected())
+            btnAdministradorEmpleado.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnAdministradorEmpleadoMousePressed
+
+    private void btnAdministradorEmpleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoMouseReleased
+        btnAdministradorEmpleado.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnAdministradorEmpleado.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnAdministradorEmpleadoMouseReleased
+
+    private void btnAdministradorEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorEmpleadoActionPerformed
+        if(!btnAdministradorEmpleado.isSelected()){
+            btnAdministradorEmpleado.setText("Si");
+            btnAdministradorEmpleado.setForeground(Color.WHITE);
+        }
+        else{
+            btnAdministradorEmpleado.setText("No");
+            btnAdministradorEmpleado.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_btnAdministradorEmpleadoActionPerformed
     String rutaImagen;
     private void copiarImagen(File a){
         try{
@@ -4023,7 +4226,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bambu_Soft("master").setVisible(true);
+                new Bambu_Soft("master","Si").setVisible(true);
             }
         });
     }
@@ -4034,11 +4237,13 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JTable TableInventario;
     private javax.swing.JTable TableVentas;
     private javax.swing.JToggleButton btnAbout;
-    private javax.swing.JButton btnAccionEmpleado;
+    private javax.swing.JButton btnActualizarEmpleado;
     private javax.swing.JButton btnActualizarInventario;
+    private javax.swing.JButton btnAddEmpleado;
     private javax.swing.JButton btnAddImagenInventario;
     private javax.swing.JButton btnAddInventario;
     private javax.swing.JButton btnAddToCart;
+    private javax.swing.JToggleButton btnAdministradorEmpleado;
     private javax.swing.JButton btnAgotado1;
     private javax.swing.JButton btnAgotado2;
     private javax.swing.JButton btnAgotado3;
@@ -4055,6 +4260,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnAgotandose7;
     private javax.swing.JToggleButton btnAñadirArticulo;
     private javax.swing.JToggleButton btnAñadirEmpleado;
+    private javax.swing.JButton btnBorrarEmpleado;
     private javax.swing.JButton btnBorrarInventario;
     private javax.swing.JToggleButton btnBuscarArticulo;
     private javax.swing.JToggleButton btnBuscarEmpleado;
@@ -4114,6 +4320,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

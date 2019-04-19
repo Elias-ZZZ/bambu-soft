@@ -255,13 +255,15 @@ public class Login extends javax.swing.JFrame {
     private void verificar(){
         String usuario=txtUser.getText();
         String password=new String(txtPassword.getPassword());
+        String admin;
         try{
             sql=new SQL();
             if(!sql.verificar(usuario,password)){
                 labelError.setVisible(true);
             }
             else{
-                Bambu_Soft b=new Bambu_Soft(usuario);
+                admin=sql.getAdministrador(usuario);
+                Bambu_Soft b=new Bambu_Soft(usuario,admin);
                 b.setVisible(true);
                 dispose();
             }
