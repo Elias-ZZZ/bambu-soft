@@ -322,5 +322,64 @@ public class SQL {
         catch(Exception e){correcto=false;}
         return correcto;
     }
-
+    
+    public ArrayList getProductoByCodeBar2(String barCode)throws Exception{
+        ArrayList datos=new ArrayList();
+        String sql="SELECT articulo,precio,codigo_de_barras FROM productos where codigo_de_barras='"+barCode+"';";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            datos.add(rs.getString("articulo"));
+            datos.add(rs.getString("precio"));
+        }
+        return datos;
+    }
+    
+    public void insertarVenta(ArrayList venta, String empleado,ArrayList articulos)throws Exception{
+        String sqlEmpleado="SELECT idEmpleado FROM empleados WHERE usuario='"+empleado+"';";//esto no sirve, hay que concatenar
+        String sql="INSERT INTO ventas VALUES (null,?,?,?,CURDATE());";
+        Statement st=conexion.createStatement();
+        ResultSet rs=st.executeQuery(sqlEmpleado);
+        String idEmpleado="";
+        while(rs.next()){
+            idEmpleado=rs.getString("idEmpleado");
+        }
+        PreparedStatement s=conexion.prepareStatement(sql);
+        s.setString(1,idEmpleado);
+        s.setString(2,venta.get(0).toString());
+        s.setString(3,venta.get(1).toString());
+        //s.setString(4,venta.get(2).toString());
+        //s.setString(5,venta.get(3).toString());
+        s.executeUpdate();
+        
+        
+        insertarProductoVenta(articulos);
+    }
+    private void insertarProductoVenta(ArrayList articulos)throws Exception{
+        String sql="SELECT idVenta FROM ventas ORDER BY idVenta DESC LIMIT 1";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        String idVenta="";
+        while(rs.next()){
+            idVenta=rs.getString("idVenta");
+        }
+        
+        
+        ArrayList idProductos=new ArrayList();
+        for(int i=0;i<articulos.size();i++){
+            rs=null;
+            sql="SELECT idProducto FROM productos WHERE codigo_de_barras='"+articulos.get(i).toString()+"'";
+            rs=s.executeQuery(sql);
+            while(rs.next()){
+                idProductos.add(rs.getString("idProducto"));
+            }
+        }
+        sql="INSERT INTO ventaproductos VALUES (null,?,?);";
+        PreparedStatement ps=conexion.prepareStatement(sql);
+        ps.setString(1,idVenta);
+        for(int i=0;i<articulos.size();i++){
+            ps.setString(2,idProductos.get(i).toString());
+            ps.executeUpdate();
+        }
+    } 
 }
