@@ -348,8 +348,6 @@ public class SQL {
         s.setString(1,idEmpleado);
         s.setString(2,venta.get(0).toString());
         s.setString(3,venta.get(1).toString());
-        //s.setString(4,venta.get(2).toString());
-        //s.setString(5,venta.get(3).toString());
         s.executeUpdate();
         
         
@@ -382,4 +380,23 @@ public class SQL {
             ps.executeUpdate();
         }
     } 
+    
+    public ArrayList getAllVentas()throws Exception{
+        String sql="SELECT ventas.idVenta,empleados.usuario,ventas.monto,ventas.tipoVenta,ventas.fecha FROM ventas " +
+                    "INNER JOIN empleados ON ventas.idVendedor=empleados.idEmpleado;";
+        ArrayList ventas=new ArrayList();
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            Object[] fila=new Object[]{
+                rs.getString("idVenta"),
+                rs.getString("usuario"),
+                rs.getString("monto"), 
+                rs.getString("tipoVenta"),
+                rs.getString("fecha")
+            };
+            ventas.add(fila);
+        }
+        return ventas;
+    }
 }
