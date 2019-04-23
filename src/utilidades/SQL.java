@@ -335,23 +335,48 @@ public class SQL {
         return datos;
     }
     
-    public void insertarVenta(ArrayList venta, String empleado,ArrayList articulos)throws Exception{
-        String sqlEmpleado="SELECT idEmpleado FROM empleados WHERE usuario='"+empleado+"';";//esto no sirve, hay que concatenar
-        String sql="INSERT INTO ventas VALUES (null,?,?,?,CURDATE());";
-        Statement st=conexion.createStatement();
-        ResultSet rs=st.executeQuery(sqlEmpleado);
-        String idEmpleado="";
-        while(rs.next()){
-            idEmpleado=rs.getString("idEmpleado");
+    public boolean comprobarProducto(ArrayList articulos)throws Exception{
+        boolean correcto=true;
+        for(int i=0;i<articulos.size();i++){
+            String sql="SELECT cantidad FROM productos WHERE codigo_de_barras='"+
+                    ((Object[])articulos.get(i))[0].toString()+"'";
+            Statement s=conexion.createStatement();
+            ResultSet rs=s.executeQuery(sql);
+            int cantidadBD=0;
+            while(rs.next()){
+                cantidadBD=Integer.parseInt(rs.getString("cantidad"));
+            }
+            int cantidadEx=Integer.parseInt(((Object[])articulos.get(i))[1].toString());
+            if(cantidadEx>cantidadBD){
+                correcto=false;
+            }
         }
-        PreparedStatement s=conexion.prepareStatement(sql);
-        s.setString(1,idEmpleado);
-        s.setString(2,venta.get(0).toString());
-        s.setString(3,venta.get(1).toString());
-        s.executeUpdate();
-        
-        
-        insertarProductoVenta(articulos);
+        return correcto;
+    }
+    
+    public boolean insertarVenta(ArrayList venta, String empleado,ArrayList articulos)throws Exception{
+        boolean error=false;
+        if(comprobarProducto(articulos)){
+            String sqlEmpleado="SELECT idEmpleado FROM empleados WHERE usuario='"+empleado+"';";
+            String sql="INSERT INTO ventas VALUES (null,?,?,?,CURDATE());";
+            Statement st=conexion.createStatement();
+            ResultSet rs=st.executeQuery(sqlEmpleado);
+            String idEmpleado="";
+            while(rs.next()){
+                idEmpleado=rs.getString("idEmpleado");
+            }
+            PreparedStatement s=conexion.prepareStatement(sql);
+            s.setString(1,idEmpleado);
+            s.setString(2,venta.get(0).toString());
+            s.setString(3,venta.get(1).toString());
+            s.executeUpdate();
+            insertarProductoVenta(articulos);
+        }
+        else{error=true;}
+
+
+            
+        return error;
     }
     private void insertarProductoVenta(ArrayList articulos)throws Exception{
         String sql="SELECT idVenta FROM ventas ORDER BY idVenta DESC LIMIT 1";
@@ -366,10 +391,16 @@ public class SQL {
         ArrayList idProductos=new ArrayList();
         for(int i=0;i<articulos.size();i++){
             rs=null;
-            sql="SELECT idProducto FROM productos WHERE codigo_de_barras='"+articulos.get(i).toString()+"'";
+            String objeto=((Object[])articulos.get(i))[0].toString();
+            String cantidad=((Object[])articulos.get(i))[1].toString();
+            sql="SELECT idProducto FROM productos WHERE codigo_de_barras='"+objeto+"'";
             rs=s.executeQuery(sql);
             while(rs.next()){
                 idProductos.add(rs.getString("idProducto"));
+                String sql2="UPDATE productos SET cantidad=cantidad-"+cantidad+",numVentas=numVentas+"+cantidad+""
+                        + " WHERE idProducto='"+rs.getString("idProducto")+"';";
+                Statement st=conexion.createStatement();
+                st.executeUpdate(sql2);
             }
         }
         sql="INSERT INTO ventaproductos VALUES (null,?,?);";
@@ -381,9 +412,22 @@ public class SQL {
         }
     } 
     
-    public ArrayList getAllVentas()throws Exception{
+    public ArrayList getAllVentas(int opcion)throws Exception{
         String sql="SELECT ventas.idVenta,empleados.usuario,ventas.monto,ventas.tipoVenta,ventas.fecha FROM ventas " +
-                    "INNER JOIN empleados ON ventas.idVendedor=empleados.idEmpleado;";
+                    "INNER JOIN empleados ON ventas.idVendedor=empleados.idEmpleado";
+        if(opcion==0){
+            sql+=" ORDER BY idVenta DESC;";
+        }
+        else{
+            if(opcion==1){
+                sql+=" WHERE tipoVenta LIKE 'Efectivo' ORDER BY idVenta DESC;";
+            }
+            else{
+                if(opcion==2){
+                    sql+=" WHERE tipoVenta LIKE 'Tarjeta' ORDER BY idVenta DESC;";
+                }
+            }
+        }
         ArrayList ventas=new ArrayList();
         Statement s=conexion.createStatement();
         ResultSet rs=s.executeQuery(sql);
@@ -398,5 +442,132 @@ public class SQL {
             ventas.add(fila);
         }
         return ventas;
+    }
+    public ArrayList buscarVentas(String[] busqueda,int opcion)throws Exception{
+        String sql="SELECT ventas.idVenta,empleados.usuario,ventas.monto,ventas.tipoVenta,ventas.fecha FROM ventas " +
+                "INNER JOIN empleados ON ventas.idVendedor=empleados.idEmpleado";
+        if(busqueda[0].equals("")){
+            if(busqueda[2].equals("n")){
+                sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR monto="+busqueda[1];
+            }
+            else{
+                if(busqueda[2].equals("f")){
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR fecha='"+busqueda[1]+"'";
+                }
+                else{
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"'";
+                }
+            }
+        }
+        if(busqueda[0].equals(">")){
+            if(busqueda[2].equals("n")){
+                sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR monto>"+busqueda[1];
+            }
+            else{
+                if(busqueda[2].equals("f")){
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR fecha>'"+busqueda[1]+"'";
+                }
+                else{
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"'";
+                }
+            }
+                        
+        }
+        if(busqueda[0].equals("<")){
+            if(busqueda[2].equals("n")){
+                sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR monto<"+busqueda[1];
+            }
+            else{
+                if(busqueda[2].equals("f")){
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR fecha<'"+busqueda[1]+"'";
+                }
+                else{
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"'";
+                }
+            }
+        }
+        if(busqueda[0].equals("=")){
+            if(busqueda[2].equals("n")){
+                sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR monto="+busqueda[1];
+            }
+            else{
+                if(busqueda[2].equals("f")){
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"' OR fecha='"+busqueda[1]+"'";
+                }
+                else{
+                    sql+=" WHERE usuario LIKE '"+busqueda[1]+"'";
+                }
+            }
+        }
+        if(opcion==0){
+            sql+=" ORDER BY idVenta DESC;";
+        }
+        else{
+            if(opcion==1){
+                sql+=" AND tipoVenta LIKE 'Efectivo' ORDER BY idVenta DESC;";
+            }
+            else{
+                if(opcion==2){
+                    sql+=" AND tipoVenta LIKE 'Tarjeta' ORDER BY idVenta DESC;";
+                }
+            }
+        }
+        
+        ArrayList ventas=new ArrayList();
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            Object[] fila=new Object[]{
+                rs.getString("idVenta"),
+                rs.getString("usuario"),
+                rs.getString("monto"), 
+                rs.getString("tipoVenta"),
+                rs.getString("fecha")
+            };
+            ventas.add(fila);
+        }
+        return ventas;
+    }
+    
+    public double getVentasDia(){
+        double total=0;
+        String sql="SELECT SUM(monto) AS total FROM ventas WHERE fecha=CURDATE()";
+        try{
+            Statement s=conexion.createStatement();
+            ResultSet rs=s.executeQuery(sql);
+            while(rs.next()){
+                total=Double.parseDouble(rs.getString("total"));
+            }
+        }catch(NullPointerException e){total=0;}
+        catch(SQLException ex){ex.printStackTrace();}
+        return total;
+    }
+    
+    public double getVentasSemana(){
+        double total=0;
+        String sql="SELECT SUM(monto) AS total FROM ventas WHERE YEARWEEK(fecha)=YEARWEEK(CURDATE())";
+        try{
+            Statement s=conexion.createStatement();
+            ResultSet rs=s.executeQuery(sql);
+            while(rs.next()){
+                total=Double.parseDouble(rs.getString("total"));
+            }
+        }catch(NullPointerException e){total=0;}
+        catch(SQLException ex){ex.printStackTrace();}
+        return total;
+    }
+    
+    public double getVentasMes(){
+        double total=0;
+        String sql="SELECT SUM(monto) AS total FROM ventas WHERE YEAR(fecha)=YEAR(CURDATE()) AND MONTH(fecha)=MONTH(CURDATE())";
+        try{
+            Statement s=conexion.createStatement();
+            ResultSet rs=s.executeQuery(sql);
+            while(rs.next()){
+                total=Double.parseDouble(rs.getString("total"));
+            }
+        }catch(NullPointerException e){total=0;}
+        catch(SQLException ex){ex.printStackTrace();}
+        return total;
     }
 }

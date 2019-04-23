@@ -60,10 +60,7 @@ private ArrayList vendidos, agotandose, agotados;
     public Bambu_Soft(String usuario, String admin) {
         sql=new SQL();
         try{
-            sql.inicio();
-            vendidos=sql.getVendidos();
-            agotandose=sql.getAgotandose();
-            agotados=sql.getAgotados();
+            actualizarInicio();
         }catch(Exception e){e.printStackTrace();}
         UIManager.put("ToggleButton.select", Color.WHITE);
         UIManager.put("Button.select", Color.WHITE);
@@ -102,6 +99,13 @@ private ArrayList vendidos, agotandose, agotados;
         header=TableEmpleados.getTableHeader();
         header.setDefaultRenderer(new EncabezadoTabla());
         cardLayout = (CardLayout) panelContent.getLayout();
+    }
+    
+    private void actualizarInicio(){
+        try{sql.inicio();}catch(Exception e){e.printStackTrace();}
+        vendidos=sql.getVendidos();
+        agotandose=sql.getAgotandose();
+        agotados=sql.getAgotados();
     }
 
     /**
@@ -175,9 +179,9 @@ private ArrayList vendidos, agotandose, agotados;
         panelStats = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
-        txtSearchVentas = new javax.swing.JTextField();
+        txtBuscarStats = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        btnBuscarVentas = new javax.swing.JButton();
+        btnBuscarStats = new javax.swing.JButton();
         jSeparator13 = new javax.swing.JSeparator();
         jLabel27 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -185,12 +189,15 @@ private ArrayList vendidos, agotandose, agotados;
         jLabel28 = new javax.swing.JLabel();
         jSeparator14 = new javax.swing.JSeparator();
         jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
+        labelVentaDia = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         btnMostrarEfectivoVentas = new javax.swing.JToggleButton();
         jLabel32 = new javax.swing.JLabel();
         btnMostrarTarjetaVentas = new javax.swing.JToggleButton();
         btnMostrarTodoVentas = new javax.swing.JToggleButton();
+        jLabel43 = new javax.swing.JLabel();
+        labelVentaSemana = new javax.swing.JLabel();
+        labelVentaMes = new javax.swing.JLabel();
         panelInventario = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
@@ -1191,53 +1198,63 @@ private ArrayList vendidos, agotandose, agotados;
         panelStats.add(jSeparator12);
         jSeparator12.setBounds(30, 50, 1120, 10);
 
-        txtSearchVentas.setForeground(new java.awt.Color(0, 0, 0));
-        txtSearchVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        txtSearchVentas.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtBuscarStats.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscarStats.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        txtBuscarStats.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtSearchVentasFocusGained(evt);
+                txtBuscarStatsFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtSearchVentasFocusLost(evt);
+                txtBuscarStatsFocusLost(evt);
             }
         });
-        txtSearchVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtBuscarStats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtSearchVentasMouseEntered(evt);
+                txtBuscarStatsMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtSearchVentasMouseExited(evt);
+                txtBuscarStatsMouseExited(evt);
             }
         });
-        panelStats.add(txtSearchVentas);
-        txtSearchVentas.setBounds(40, 80, 610, 30);
+        txtBuscarStats.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarStatsKeyPressed(evt);
+            }
+        });
+        panelStats.add(txtBuscarStats);
+        txtBuscarStats.setBounds(40, 80, 610, 30);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Mostrar por:");
         panelStats.add(jLabel26);
         jLabel26.setBounds(810, 60, 190, 16);
 
-        btnBuscarVentas.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarVentas.setForeground(new java.awt.Color(0, 0, 0));
-        btnBuscarVentas.setText("Buscar");
-        btnBuscarVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
-        btnBuscarVentas.setFocusPainted(false);
-        btnBuscarVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscarStats.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscarStats.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarStats.setText("Buscar");
+        btnBuscarStats.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(152, 107, 168)));
+        btnBuscarStats.setFocusPainted(false);
+        btnBuscarStats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarVentasMouseEntered(evt);
+                btnBuscarStatsMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBuscarVentasMouseExited(evt);
+                btnBuscarStatsMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnBuscarVentasMousePressed(evt);
+                btnBuscarStatsMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnBuscarVentasMouseReleased(evt);
+                btnBuscarStatsMouseReleased(evt);
             }
         });
-        panelStats.add(btnBuscarVentas);
-        btnBuscarVentas.setBounds(680, 80, 100, 30);
+        btnBuscarStats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarStatsActionPerformed(evt);
+            }
+        });
+        panelStats.add(btnBuscarStats);
+        btnBuscarStats.setBounds(660, 80, 100, 30);
 
         jSeparator13.setForeground(new java.awt.Color(81, 0, 126));
         panelStats.add(jSeparator13);
@@ -1286,7 +1303,7 @@ private ArrayList vendidos, agotandose, agotados;
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Ventas del mes: $");
         panelStats.add(jLabel28);
-        jLabel28.setBounds(40, 550, 530, 47);
+        jLabel28.setBounds(40, 550, 303, 47);
 
         jSeparator14.setForeground(new java.awt.Color(81, 0, 126));
         panelStats.add(jSeparator14);
@@ -1298,17 +1315,17 @@ private ArrayList vendidos, agotandose, agotados;
         panelStats.add(jLabel29);
         jLabel29.setBounds(40, 430, 200, 32);
 
-        jLabel30.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel30.setText("Ventas del dia: $");
-        panelStats.add(jLabel30);
-        jLabel30.setBounds(40, 480, 560, 47);
+        labelVentaDia.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaDia.setForeground(new java.awt.Color(0, 0, 0));
+        labelVentaDia.setText("0.00");
+        panelStats.add(labelVentaDia);
+        labelVentaDia.setBounds(330, 480, 190, 47);
 
         jLabel31.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Ventas de la semana: $");
         panelStats.add(jLabel31);
-        jLabel31.setBounds(530, 480, 530, 47);
+        jLabel31.setBounds(530, 480, 400, 47);
 
         btnMostrarEfectivoVentas.setBackground(new java.awt.Color(140, 61, 168));
         btnMostrarEfectivoVentas.setForeground(new java.awt.Color(0, 0, 0));
@@ -1397,6 +1414,24 @@ private ArrayList vendidos, agotandose, agotados;
         });
         panelStats.add(btnMostrarTodoVentas);
         btnMostrarTodoVentas.setBounds(810, 80, 110, 30);
+
+        jLabel43.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setText("Ventas del dia: $");
+        panelStats.add(jLabel43);
+        jLabel43.setBounds(40, 480, 290, 47);
+
+        labelVentaSemana.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaSemana.setForeground(new java.awt.Color(0, 0, 0));
+        labelVentaSemana.setText("0.00");
+        panelStats.add(labelVentaSemana);
+        labelVentaSemana.setBounds(930, 480, 190, 47);
+
+        labelVentaMes.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaMes.setForeground(new java.awt.Color(0, 0, 0));
+        labelVentaMes.setText("0.00");
+        panelStats.add(labelVentaMes);
+        labelVentaMes.setBounds(350, 550, 190, 47);
 
         panelContent.add(panelStats, "pnlStats");
 
@@ -2466,6 +2501,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         changeButtons("Inicio");
+        actualizarInicio();
         checkVendidos();
         checkAgotandose();
         checkAgotados();
@@ -2521,8 +2557,11 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsActionPerformed
         changeButtons("Stats");
-        try{actualizarTabla(TableVentas,sql.getAllVentas());}catch(Exception e){e.printStackTrace();}
+        try{actualizarTabla(TableVentas,sql.getAllVentas(0));}catch(Exception e){e.printStackTrace();}
+        setVentasGenerales();
+        
         cardLayout.show(panelContent, "pnlStats");
+        repaint();
     }//GEN-LAST:event_btnStatsActionPerformed
 
     private void btnAboutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseEntered
@@ -3027,40 +3066,40 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnBorrarInventario.setFont(new java.awt.Font("Dialog", 1, 12));
     }//GEN-LAST:event_btnBorrarInventarioMouseReleased
 
-    private void txtSearchVentasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchVentasFocusGained
-        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtSearchVentasFocusGained
+    private void txtBuscarStatsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarStatsFocusGained
+        txtBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtBuscarStatsFocusGained
 
-    private void txtSearchVentasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchVentasFocusLost
-        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtSearchVentasFocusLost
+    private void txtBuscarStatsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarStatsFocusLost
+        txtBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBuscarStatsFocusLost
 
-    private void txtSearchVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchVentasMouseEntered
-        txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_txtSearchVentasMouseEntered
+    private void txtBuscarStatsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarStatsMouseEntered
+        txtBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_txtBuscarStatsMouseEntered
 
-    private void txtSearchVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchVentasMouseExited
-        if(!(txtSearchVentas.isFocusOwner()))
-            txtSearchVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_txtSearchVentasMouseExited
+    private void txtBuscarStatsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarStatsMouseExited
+        if(!(txtBuscarStats.isFocusOwner()))
+            txtBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_txtBuscarStatsMouseExited
 
-    private void btnBuscarVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseEntered
-        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-    }//GEN-LAST:event_btnBuscarVentasMouseEntered
+    private void btnBuscarStatsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarStatsMouseEntered
+        btnBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+    }//GEN-LAST:event_btnBuscarStatsMouseEntered
 
-    private void btnBuscarVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseExited
-        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
-    }//GEN-LAST:event_btnBuscarVentasMouseExited
+    private void btnBuscarStatsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarStatsMouseExited
+        btnBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(152,107,168)));
+    }//GEN-LAST:event_btnBuscarStatsMouseExited
 
-    private void btnBuscarVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMousePressed
-        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
-        btnBuscarVentas.setFont(new java.awt.Font("Dialog", 1, 11));
-    }//GEN-LAST:event_btnBuscarVentasMousePressed
+    private void btnBuscarStatsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarStatsMousePressed
+        btnBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),3));
+        btnBuscarStats.setFont(new java.awt.Font("Dialog", 1, 11));
+    }//GEN-LAST:event_btnBuscarStatsMousePressed
 
-    private void btnBuscarVentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVentasMouseReleased
-        btnBuscarVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
-        btnBuscarVentas.setFont(new java.awt.Font("Dialog", 1, 12));
-    }//GEN-LAST:event_btnBuscarVentasMouseReleased
+    private void btnBuscarStatsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarStatsMouseReleased
+        btnBuscarStats.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
+        btnBuscarStats.setFont(new java.awt.Font("Dialog", 1, 12));
+    }//GEN-LAST:event_btnBuscarStatsMouseReleased
 
     private void btnMostrarEfectivoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarEfectivoVentasMouseEntered
         btnMostrarEfectivoVentas.setBorder(BorderFactory.createLineBorder(new java.awt.Color(140,61,168),2));
@@ -3087,7 +3126,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnMostrarTarjetaVentas.setForeground(Color.BLACK);
         btnMostrarEfectivoVentas.setForeground(Color.WHITE);
         btnMostrarEfectivoVentas.setFocusable(false);
-        
+        buscarStats();
     }//GEN-LAST:event_btnMostrarEfectivoVentasActionPerformed
 
     private void btnMostrarTarjetaVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTarjetaVentasMouseEntered
@@ -3115,7 +3154,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnMostrarEfectivoVentas.setForeground(Color.BLACK);
         btnMostrarTarjetaVentas.setForeground(Color.WHITE);
         btnMostrarTarjetaVentas.setFocusable(false);
-        
+        buscarStats();
     }//GEN-LAST:event_btnMostrarTarjetaVentasActionPerformed
 
     private void btnMostrarTodoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTodoVentasMouseEntered
@@ -3142,7 +3181,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnMostrarTarjetaVentas.setForeground(Color.BLACK);
         btnMostrarEfectivoVentas.setForeground(Color.BLACK);
         btnMostrarEfectivoVentas.setSelected(true);
-        
+        String busqueda=txtBuscarStats.getText();
+        buscarStats();
     }//GEN-LAST:event_btnMostrarTodoVentasActionPerformed
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
@@ -4190,6 +4230,90 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             pagarCompra();
         }
     }//GEN-LAST:event_txtPagoVentasKeyPressed
+
+    private void txtBuscarStatsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarStatsKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscarStats();
+        }
+    }//GEN-LAST:event_txtBuscarStatsKeyPressed
+
+    private void btnBuscarStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarStatsActionPerformed
+        buscarStats();
+    }//GEN-LAST:event_btnBuscarStatsActionPerformed
+    
+    private void setVentasGenerales(){
+        DecimalFormat f=new DecimalFormat("#0.00");
+        labelVentaDia.setText(""+f.format(sql.getVentasDia()));
+        labelVentaSemana.setText(""+f.format(sql.getVentasSemana()));
+        labelVentaMes.setText(""+f.format(sql.getVentasMes()));
+    }
+    
+    private void buscarStats(){
+        String b=txtBuscarStats.getText();
+        int opcion=0;
+        if(!btnMostrarTodoVentas.isSelected()){
+            opcion=0;
+        }
+        else{
+            if(!btnMostrarEfectivoVentas.isSelected()){
+                opcion=1;
+            }
+            else{
+                if(!btnMostrarTarjetaVentas.isSelected()){
+                    opcion=2;
+                }
+            }
+        }
+        if(b.equals("")){
+            try{
+                actualizarTabla(TableVentas,sql.getAllVentas(opcion));
+            }
+            catch(Exception e){e.printStackTrace();}
+        }
+        else{
+            try{
+                String[] busqueda=operador(b);
+                actualizarTabla(TableVentas,sql.buscarVentas(busqueda,opcion));
+            }catch(Exception e){e.printStackTrace();}
+        }
+    }
+    
+    public String[] operador(String busqueda){
+        char operador=busqueda.charAt(0);
+        String[] temp=new String[3];
+        
+        if(operador=='>'){
+            temp=busqueda.split(">");
+            temp[0]=""+operador;
+        }
+        else{
+            if(operador=='<'){
+                temp=busqueda.split("<");
+                temp[0]=""+operador;
+            }
+            else{
+                if(operador=='='){
+                    temp=busqueda.split("=");
+                    temp[0]=""+operador;
+                }
+                else{
+                    temp=new String[]{"",busqueda,""};
+                }
+
+            }
+        }
+        temp=new String[]{temp[0],temp[1],""};
+        try{
+            if(!temp[0].equals("")){
+                Double.parseDouble(temp[1]);
+                temp[2]="n";
+            }
+        }catch(NumberFormatException e){
+            temp[2]="f";
+        }
+
+        return temp;
+    }
     
     private void pagarCompra(){
         double total=Double.parseDouble(labelTotalVentas.getText());
@@ -4208,10 +4332,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
                 ,"Advertencia",JOptionPane.YES_NO_OPTION,2);
                 if(opcion==0){
                     try{
-                        sql.insertarVenta(venta,labelUsuario.getText(),carrito2);
-                        Venta v=new Venta(total,pago);
-                        limpiarCamposVentas();
-                        limpiarTablaCarrito();
+                        if(!sql.insertarVenta(venta,labelUsuario.getText(),carrito2)){
+                            Venta v=new Venta(total,pago);
+                            limpiarCamposVentas();
+                            limpiarTablaCarrito();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"No se pudo realizar la venta");
+                        }
                     }catch(Exception e){e.printStackTrace();}
                 }
             }
@@ -4234,7 +4362,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             }
             carrito=new ArrayList();
             carrito2=new ArrayList();
-            TableVentas.setModel(modelo);
+            TableCarrito.setModel(modelo);
         }
     }
     
@@ -4256,7 +4384,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
                         total
                     };
                     carrito.add(fila);
-                    carrito2.add(barCode);
+                    Object fila2=new Object[]{barCode,cantidad};
+                    carrito2.add(fila2);
                     actualizarTabla(TableCarrito,carrito);
                     actualizarTotalVentas();
                     repaint();
@@ -4460,6 +4589,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnVendidos.add(btnVendidos5);
         btnVendidos.add(btnVendidos6);
         btnVendidos.add(btnVendidos7);
+        for(int i=0;i<btnVendidos.size();i++){
+            ((JButton)(btnVendidos.get(i))).setVisible(true);
+        }
         for(int i=6;i>=vendidos.size();i--){
             ((JButton)(btnVendidos.get(i))).setVisible(false);
         }
@@ -4499,6 +4631,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnAgotandose.add(btnAgotandose5);
         btnAgotandose.add(btnAgotandose6);
         btnAgotandose.add(btnAgotandose7);
+        for(int i=0;i<btnAgotandose.size();i++){
+            ((JButton)(btnAgotandose.get(i))).setVisible(true);
+        }
         for(int i=6;i>=agotandose.size();i--){
             ((JButton)(btnAgotandose.get(i))).setVisible(false);
         }
@@ -4529,6 +4664,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         btnAgotados.add(btnAgotado5);
         btnAgotados.add(btnAgotado6);
         btnAgotados.add(btnAgotado7);
+        for(int i=0;i<btnAgotados.size();i++){
+            ((JButton)(btnAgotados.get(i))).setVisible(true);
+        }
         for(int i=6;i>=agotados.size();i--){
             ((JButton)(btnAgotados.get(i))).setVisible(false);
         }
@@ -4618,7 +4756,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JButton btnBorrarInventario;
     private javax.swing.JToggleButton btnBuscarArticulo;
     private javax.swing.JToggleButton btnBuscarEmpleado;
-    private javax.swing.JButton btnBuscarVentas;
+    private javax.swing.JButton btnBuscarStats;
     private javax.swing.JToggleButton btnEfectivoVentas;
     private javax.swing.JToggleButton btnEmpleados;
     private javax.swing.JToggleButton btnInicio;
@@ -4662,7 +4800,6 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -4676,6 +4813,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -4707,6 +4845,9 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JLabel labelNothingVendido;
     private javax.swing.JLabel labelTotalVentas;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JLabel labelVentaDia;
+    private javax.swing.JLabel labelVentaMes;
+    private javax.swing.JLabel labelVentaSemana;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelContent;
     private javax.swing.JPanel panelEmpleados;
@@ -4719,6 +4860,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JTextField txtArticuloVentas;
     private javax.swing.JTextField txtBarCodeInventario;
     private javax.swing.JTextField txtBarCodeVentas;
+    private javax.swing.JTextField txtBuscarStats;
     private javax.swing.JTextField txtCantidadInventario;
     private javax.swing.JTextField txtCantidadVentas;
     private javax.swing.JTextField txtNombreEmpleado;
@@ -4727,7 +4869,6 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private javax.swing.JTextField txtPrecioInventario;
     private javax.swing.JTextField txtPrecioVentas;
     private javax.swing.JTextField txtSearchInventario;
-    private javax.swing.JTextField txtSearchVentas;
     private javax.swing.JTextField txtTelefonoEmpleado;
     private javax.swing.JTextField txtUnidadesVendidasInventario;
     private javax.swing.JTextField txtUsuarioEmpleado;
