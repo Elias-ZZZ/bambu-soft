@@ -1287,6 +1287,11 @@ private ArrayList vendidos, agotandose, agotados;
         TableVentas.getTableHeader().setReorderingAllowed(false);
         TableVentas.getTableHeader().setBackground(new java.awt.Color(140,61,168));
         TableVentas.getTableHeader().setBorder(BorderFactory.createLineBorder(new java.awt.Color(255,255,255), 1));
+        TableVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableVentasMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(TableVentas);
         if (TableVentas.getColumnModel().getColumnCount() > 0) {
             TableVentas.getColumnModel().getColumn(0).setResizable(false);
@@ -1297,35 +1302,35 @@ private ArrayList vendidos, agotandose, agotados;
         }
 
         panelStats.add(jScrollPane3);
-        jScrollPane3.setBounds(40, 180, 1100, 230);
+        jScrollPane3.setBounds(40, 180, 1100, 320);
 
-        jLabel28.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Ventas del mes: $");
         panelStats.add(jLabel28);
-        jLabel28.setBounds(40, 550, 303, 47);
+        jLabel28.setBounds(40, 590, 210, 32);
 
         jSeparator14.setForeground(new java.awt.Color(81, 0, 126));
         panelStats.add(jSeparator14);
-        jSeparator14.setBounds(30, 470, 1120, 10);
+        jSeparator14.setBounds(30, 550, 1120, 10);
 
         jLabel29.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Ventas generales");
         panelStats.add(jLabel29);
-        jLabel29.setBounds(40, 430, 200, 32);
+        jLabel29.setBounds(40, 510, 200, 32);
 
-        labelVentaDia.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaDia.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelVentaDia.setForeground(new java.awt.Color(0, 0, 0));
         labelVentaDia.setText("0.00");
         panelStats.add(labelVentaDia);
-        labelVentaDia.setBounds(330, 480, 190, 47);
+        labelVentaDia.setBounds(240, 560, 190, 30);
 
-        jLabel31.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Ventas de la semana: $");
         panelStats.add(jLabel31);
-        jLabel31.setBounds(530, 480, 400, 47);
+        jLabel31.setBounds(400, 560, 270, 30);
 
         btnMostrarEfectivoVentas.setBackground(new java.awt.Color(140, 61, 168));
         btnMostrarEfectivoVentas.setForeground(new java.awt.Color(0, 0, 0));
@@ -1415,23 +1420,23 @@ private ArrayList vendidos, agotandose, agotados;
         panelStats.add(btnMostrarTodoVentas);
         btnMostrarTodoVentas.setBounds(810, 80, 110, 30);
 
-        jLabel43.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel43.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Ventas del dia: $");
         panelStats.add(jLabel43);
-        jLabel43.setBounds(40, 480, 290, 47);
+        jLabel43.setBounds(40, 560, 200, 32);
 
-        labelVentaSemana.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaSemana.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelVentaSemana.setForeground(new java.awt.Color(0, 0, 0));
         labelVentaSemana.setText("0.00");
         panelStats.add(labelVentaSemana);
-        labelVentaSemana.setBounds(930, 480, 190, 47);
+        labelVentaSemana.setBounds(670, 560, 190, 32);
 
-        labelVentaMes.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelVentaMes.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelVentaMes.setForeground(new java.awt.Color(0, 0, 0));
         labelVentaMes.setText("0.00");
         panelStats.add(labelVentaMes);
-        labelVentaMes.setBounds(350, 550, 190, 47);
+        labelVentaMes.setBounds(250, 590, 190, 30);
 
         panelContent.add(panelStats, "pnlStats");
 
@@ -1972,6 +1977,11 @@ private ArrayList vendidos, agotandose, agotados;
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtTelefonoEmpleadoMouseExited(evt);
+            }
+        });
+        txtTelefonoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoEmpleadoKeyTyped(evt);
             }
         });
         panelEmpleados.add(txtTelefonoEmpleado);
@@ -2527,6 +2537,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             actualizarTabla(TableInventario,productosInventario);
         }catch(Exception e){e.printStackTrace();}
         limpiarCamposInventario();
+        habilitarCamposInventario(false);
     }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseEntered
@@ -2626,7 +2637,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_btnLogoutMousePressed
 
     private void txtPagoVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPagoVentasMouseEntered
-        txtPagoVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtPagoVentas.isEnabled())
+            txtPagoVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtPagoVentasMouseEntered
 
     private void txtPagoVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPagoVentasMouseExited
@@ -2774,10 +2786,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         if(btnEfectivoVentas.isSelected()){
             btnTarjetaVentas.setForeground(Color.WHITE);
             btnEfectivoVentas.setForeground(Color.BLACK);
+            txtPagoVentas.setEnabled(false);
+            txtPagoVentas.setText(labelTotalVentas.getText());
         }
         else{
             btnTarjetaVentas.setForeground(Color.BLACK);
             btnEfectivoVentas.setForeground(Color.WHITE);
+            txtPagoVentas.setEnabled(true);
+            txtPagoVentas.setText("");
         }
     }//GEN-LAST:event_btnEfectivoVentasActionPerformed
 
@@ -2793,10 +2809,14 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         if(btnTarjetaVentas.isSelected()){
             btnTarjetaVentas.setForeground(Color.BLACK);
             btnEfectivoVentas.setForeground(Color.WHITE);
+            txtPagoVentas.setEnabled(true);
+            txtPagoVentas.setText("");
         }
         else{
             btnTarjetaVentas.setForeground(Color.WHITE);
             btnEfectivoVentas.setForeground(Color.BLACK);
+            txtPagoVentas.setEnabled(false);
+            txtPagoVentas.setText(labelTotalVentas.getText());
         }
     }//GEN-LAST:event_btnTarjetaVentasActionPerformed
 
@@ -2845,7 +2865,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtBarCodeInventarioFocusLost
 
     private void txtBarCodeInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioMouseEntered
-        txtBarCodeInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtBarCodeInventario.isEnabled())
+            txtBarCodeInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtBarCodeInventarioMouseEntered
 
     private void txtBarCodeInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBarCodeInventarioMouseExited
@@ -2933,17 +2954,19 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         if(btnAñadirArticulo.isSelected()){
             btnAñadirArticulo.setForeground(Color.BLACK);
             btnBuscarArticulo.setForeground(Color.WHITE);
+            habilitarCamposInventario(false);
             btnAddInventario.setVisible(false);
             TableInventario.setEnabled(true);
             btnAddImagenInventario.setVisible(false);
-            btnBorrarInventario.setVisible(true);
-            btnActualizarInventario.setVisible(true);
+            //btnBorrarInventario.setVisible(true);
+            //btnActualizarInventario.setVisible(true);
             btnSearchInventario.setEnabled(true);
             txtSearchInventario.setEnabled(true);
         }
         else{
             btnAñadirArticulo.setForeground(Color.WHITE);
             btnBuscarArticulo.setForeground(Color.BLACK);
+            habilitarCamposInventario(true);
             btnAddInventario.setVisible(true);
             btnAddImagenInventario.setText("Añadir imagen");
             limpiarCamposInventario();
@@ -2983,7 +3006,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtArticuloInventarioFocusLost
 
     private void txtArticuloInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticuloInventarioMouseEntered
-        txtArticuloInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtArticuloInventario.isEnabled())
+            txtArticuloInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtArticuloInventarioMouseEntered
 
     private void txtArticuloInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtArticuloInventarioMouseExited
@@ -3000,7 +3024,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtPrecioInventarioFocusLost
 
     private void txtPrecioInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioInventarioMouseEntered
-        txtPrecioInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtPrecioInventario.isEnabled())
+            txtPrecioInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtPrecioInventarioMouseEntered
 
     private void txtPrecioInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioInventarioMouseExited
@@ -3017,7 +3042,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtCantidadInventarioFocusLost
 
     private void txtCantidadInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadInventarioMouseEntered
-        txtCantidadInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtCantidadInventario.isEnabled())
+            txtCantidadInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtCantidadInventarioMouseEntered
 
     private void txtCantidadInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadInventarioMouseExited
@@ -3190,8 +3216,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         limpiarCamposInventario();
         TableInventario.setEnabled(true);
         btnAddImagenInventario.setVisible(false);
-        btnBorrarInventario.setVisible(true);
-        btnActualizarInventario.setVisible(true);
+        //btnBorrarInventario.setVisible(true);
+        //btnActualizarInventario.setVisible(true);
         btnSearchInventario.setEnabled(true);
         txtSearchInventario.setEnabled(true);
         if(btnAñadirArticulo.isSelected()){
@@ -3203,9 +3229,11 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         if(btnBuscarArticulo.isSelected()){
             btnBuscarArticulo.setForeground(Color.BLACK);
             btnAñadirArticulo.setForeground(Color.WHITE);
+            habilitarCamposInventario(true);
             btnAddInventario.setVisible(true);
             btnAddImagenInventario.setText("Añadir imagen");
             limpiarCamposInventario();
+            
             btnAddImagenInventario.setVisible(true);
             TableInventario.setEnabled(false);
             btnSearchInventario.setEnabled(false);
@@ -3216,11 +3244,12 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         else{
             btnBuscarArticulo.setForeground(Color.WHITE);
             btnAñadirArticulo.setForeground(Color.BLACK);
+            habilitarCamposInventario(false);
             btnAddInventario.setVisible(false);
             TableInventario.setEnabled(true);
             btnAddImagenInventario.setVisible(false);
-            btnBorrarInventario.setVisible(true);
-            btnActualizarInventario.setVisible(true);
+            //btnBorrarInventario.setVisible(true);
+            //btnActualizarInventario.setVisible(true);
             btnSearchInventario.setEnabled(true);
             txtSearchInventario.setEnabled(true);
         }
@@ -3855,7 +3884,8 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }//GEN-LAST:event_txtUnidadesVendidasInventarioFocusLost
 
     private void txtUnidadesVendidasInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnidadesVendidasInventarioMouseEntered
-        txtUnidadesVendidasInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
+        if(txtUnidadesVendidasInventario.isEnabled())
+            txtUnidadesVendidasInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(140, 61, 168),2));
     }//GEN-LAST:event_txtUnidadesVendidasInventarioMouseEntered
 
     private void txtUnidadesVendidasInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUnidadesVendidasInventarioMouseExited
@@ -3867,6 +3897,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     
     private void TableInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableInventarioMouseClicked
         if(TableInventario.isEnabled()){  
+            habilitarCamposInventario(true);
             Point point=evt.getPoint();
             int fila=TableInventario.rowAtPoint(point);
             String barCode=TableInventario.getValueAt(fila, 0).toString();
@@ -3920,11 +3951,16 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnActualizarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarInventarioActionPerformed
         ArrayList datos=getDatosInventario();
-        try{
-            sql.ActualizarRegistroInventario(respaldoCodeBar,respaldoArticulo,datos);
-            actualizarTabla(TableInventario,sql.getAllProductos());
-            limpiarCamposInventario();
-        }catch(Exception e){e.printStackTrace();}
+        if(datos.size()>0){
+            try{
+                sql.ActualizarRegistroInventario(respaldoCodeBar,respaldoArticulo,datos);
+                actualizarTabla(TableInventario,sql.getAllProductos());
+                limpiarCamposInventario();
+                habilitarCamposInventario(false);
+                JOptionPane.showMessageDialog(null,"Datos del articulo actualizados con exito",
+                        "Correcto",JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){e.printStackTrace();}
+        }
     }//GEN-LAST:event_btnActualizarInventarioActionPerformed
 
     private void btnAddInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddInventarioMouseEntered
@@ -3950,9 +3986,17 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         ArrayList nuevo=new ArrayList();
         if(datos.size()>0){
             try{
-                sql.insertArticulo(datos);
-                nuevo=sql.getAllProductos();
-                actualizarTabla(TableInventario,nuevo);
+                if(sql.insertArticulo(datos)){
+                    nuevo=sql.getAllProductos();
+                    actualizarTabla(TableInventario,nuevo);
+                    limpiarCamposInventario();
+                    JOptionPane.showMessageDialog(null,"Articulo registrado con exito","Correcto",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El codigo de barras ya esta registrado",
+                            "Error",JOptionPane.ERROR_MESSAGE);
+                }
             }catch(Exception e){e.printStackTrace();}
         }
     }//GEN-LAST:event_btnAddInventarioActionPerformed
@@ -4019,13 +4063,17 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         barCode=txtBarCodeInventario.getText();
         articulo=txtArticuloInventario.getText();
         if(!barCode.equals("")&&!articulo.equals("")){
-            int opcion=JOptionPane.showConfirmDialog(null,"El articulo "+articulo+" sera ELIMINADO del inventario, ¿Deseas continuar?"
+            int opcion=JOptionPane.showConfirmDialog(null,"El articulo "+articulo+" sera ELIMINADO del inventario"
+                    + " y del registro de ventas, ¿Deseas continuar?"
             ,"Advertencia",JOptionPane.YES_NO_OPTION,2);
             if(opcion==0){
                 try{
                     sql.borrarArticulo(barCode,articulo);
                     actualizarTabla(TableInventario,sql.getAllProductos());
                     limpiarCamposInventario();
+                    habilitarCamposInventario(false);
+                    JOptionPane.showMessageDialog(null,"Articulo borrado con exito","Correcto",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
                 catch(Exception e){e.printStackTrace();}
             }
@@ -4176,17 +4224,20 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
 
     private void btnActualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarEmpleadoActionPerformed
         ArrayList empleadoU=getDatosEmpleado();
-        try{
-            if(sql.actualizarEmpleado(empleadoU,copiaIdEmpleado)){
-                JOptionPane.showMessageDialog(null,"Empleado actualizado","Correcto",JOptionPane.INFORMATION_MESSAGE);
-                actualizarTabla(TableEmpleados,sql.getAllEmpleados());
+        if(empleadoU.size()>0){
+            try{
+                if(sql.actualizarEmpleado(empleadoU,copiaIdEmpleado)){
+                    JOptionPane.showMessageDialog(null,"Empleado actualizado","Correcto",JOptionPane.INFORMATION_MESSAGE);
+                    actualizarTabla(TableEmpleados,sql.getAllEmpleados());
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Ha ocurrido un error, por favor verifica que el usuario no este repetido",
+                            "Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
-            else{
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error, por favor verifica que el usuario no este repetido",
-                        "Error",JOptionPane.ERROR_MESSAGE);
-            }
+            catch(Exception e){e.printStackTrace();}
+        
         }
-        catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_btnActualizarEmpleadoActionPerformed
     ArrayList carrito=new ArrayList();
     private void txtBarCodeVentasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBarCodeVentasKeyPressed
@@ -4240,6 +4291,25 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     private void btnBuscarStatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarStatsActionPerformed
         buscarStats();
     }//GEN-LAST:event_btnBuscarStatsActionPerformed
+
+    private void txtTelefonoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoKeyTyped
+        if(txtTelefonoEmpleado.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoEmpleadoKeyTyped
+
+    private void TableVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableVentasMouseClicked
+        if(evt.getClickCount()==2){
+            Point p=evt.getPoint();
+            int fila=TableVentas.rowAtPoint(p);
+            String id=TableVentas.getValueAt(fila, 0).toString();
+            ArrayList datosVenta=new ArrayList();
+            for(int i=0;i<TableVentas.getColumnCount();i++){
+                datosVenta.add(TableVentas.getValueAt(fila,i));
+            }
+            ventaInfo f=new ventaInfo(id,datosVenta);
+        }
+    }//GEN-LAST:event_TableVentasMouseClicked
     
     private void setVentasGenerales(){
         DecimalFormat f=new DecimalFormat("#0.00");
@@ -4316,41 +4386,48 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
     }
     
     private void pagarCompra(){
-        double total=Double.parseDouble(labelTotalVentas.getText());
-        try{
-            double pago=Double.parseDouble(txtPagoVentas.getText());
-            if(pago>=total){
-                ArrayList venta=new ArrayList();
-                venta.add(total);
-                if(!btnEfectivoVentas.isSelected()){
-                    venta.add(btnEfectivoVentas.getText());
+        if(carrito.size()>0){
+            double total=Double.parseDouble(labelTotalVentas.getText());
+            try{
+                double pago=Double.parseDouble(txtPagoVentas.getText());
+                if(pago>=total){
+                    ArrayList venta=new ArrayList();
+                    venta.add(total);
+                    if(!btnEfectivoVentas.isSelected()){
+                        venta.add(btnEfectivoVentas.getText());
+                    }
+                    else{
+                        venta.add(btnTarjetaVentas.getText());
+                    }
+                    int opcion=JOptionPane.showConfirmDialog(null,"Estas a punto de realizar una venta,¿Continuar?"
+                    ,"Advertencia",JOptionPane.YES_NO_OPTION,2);
+                    if(opcion==0){
+                        try{
+                            if(!sql.insertarVenta(venta,labelUsuario.getText(),carrito2)){
+                                Venta v=new Venta(total,pago);
+                                limpiarCamposVentas();
+                                limpiarTablaCarrito();
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null,"No se pudo realizar la venta");
+                            }
+                        }catch(Exception e){e.printStackTrace();}
+                    }
                 }
                 else{
-                    venta.add(btnTarjetaVentas.getText());
+                    JOptionPane.showMessageDialog(null,"No se puede realizar la venta, asegurate que el pago del cliente sea el correcto",
+                            "Error",JOptionPane.ERROR_MESSAGE);
                 }
-                int opcion=JOptionPane.showConfirmDialog(null,"Estas a punto de realizar una venta,¿Continuar?"
-                ,"Advertencia",JOptionPane.YES_NO_OPTION,2);
-                if(opcion==0){
-                    try{
-                        if(!sql.insertarVenta(venta,labelUsuario.getText(),carrito2)){
-                            Venta v=new Venta(total,pago);
-                            limpiarCamposVentas();
-                            limpiarTablaCarrito();
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null,"No se pudo realizar la venta");
-                        }
-                    }catch(Exception e){e.printStackTrace();}
-                }
+            
             }
-            else{
-                JOptionPane.showMessageDialog(null,"No se puede realizar la venta, asegurate que el pago del cliente sea el correcto",
-                        "Error",JOptionPane.ERROR_MESSAGE);
+            catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Asegurate de introducir solo valores numericos en el pago","Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
             }
         }
-        catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Asegurate de introducir solo valores numericos en el pago","Advertencia",
-                    JOptionPane.WARNING_MESSAGE);
+        else{
+            JOptionPane.showMessageDialog(null,"No puedes realizar una venta sin productos","Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -4457,7 +4534,7 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         boolean error=true;
         if(!nombre.equals("")&&!usuario.equals("")&&!pass.equals("")&&!telefono.equals("")){
             try{
-                long num=Integer.parseInt(telefono);
+                long num=Long.parseLong(telefono);
                 error=false;
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"El numero de telefono es invalido","Advertencia",2);
@@ -4492,6 +4569,17 @@ btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
         txtUnidadesVendidasInventario.setText("");
         txtBarCodeInventario.setText("");
         labelImagenInventario.setIcon(null);
+        
+    }
+    
+    private void habilitarCamposInventario(boolean o){
+        txtArticuloInventario.setEnabled(o);
+        txtPrecioInventario.setEnabled(o);
+        txtCantidadInventario.setEnabled(o);
+        txtUnidadesVendidasInventario.setEnabled(o);
+        txtBarCodeInventario.setEnabled(o);
+        btnActualizarInventario.setVisible(o);
+        btnBorrarInventario.setVisible(o);
     }
     
     private void buscarInventario(){

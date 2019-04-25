@@ -186,18 +186,42 @@ public class SQL {
         return agotados;
     }
     
-    public void insertArticulo(ArrayList datos)throws Exception{
+    public boolean insertArticulo(ArrayList datos)throws Exception{
+        boolean correcto=true;
         String sql="INSERT INTO productos (idProducto,articulo,codigo_de_barras,precio,cantidad,numVentas,imagen) VALUES (null,?,?,?,?,?,?);";
-        PreparedStatement s=conexion.prepareStatement(sql);
-        for(int i=0;i<datos.size();i++){
-            s.setString(i+1,datos.get(i).toString());
+        correcto=verificarBarCode(datos.get(1).toString());
+        if(correcto){
+            PreparedStatement s=conexion.prepareStatement(sql);
+            for(int i=0;i<datos.size();i++){
+                s.setString(i+1,datos.get(i).toString());
+            }
+            s.executeUpdate();
         }
-        s.executeUpdate();
+        return correcto;
+    }
+    
+    public boolean verificarBarCode(String barCode)throws Exception{
+        boolean correcto=true;
+        String sql="SELECT codigo_de_barras FROM producto;";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            if(barCode.equals(rs.getString("codigo_de_barras"))){
+                correcto=false;
+                break;
+            }
+        }
+        return correcto;
     }
     
     public void borrarArticulo(String codeBar, String articulo)throws Exception{
-        String sql="DELETE FROM productos WHERE codigo_de_barras=? AND articulo=?;";
+        String sql="DELETE FROM ventaproductos WHERE idProducto=(SELECT idProducto FROM productos WHERE codigo_de_barras=? AND articulo=?);";
         PreparedStatement s=conexion.prepareStatement(sql);
+        s.setString(1,codeBar);
+        s.setString(2,articulo);
+        s.executeUpdate();
+        sql="DELETE FROM productos WHERE codigo_de_barras=? AND articulo=?;";
+        s=conexion.prepareStatement(sql);
         s.setString(1,codeBar);
         s.setString(2,articulo);
         s.executeUpdate();
@@ -270,6 +294,7 @@ public class SQL {
         while(rs.next()){
             if(empleado.equals(rs.getString("usuario"))){
                 error=true;
+                break;
             }
         }
         return error;
@@ -403,11 +428,12 @@ public class SQL {
                 st.executeUpdate(sql2);
             }
         }
-        sql="INSERT INTO ventaproductos VALUES (null,?,?);";
+        sql="INSERT INTO ventaproductos VALUES (null,?,?,?);";
         PreparedStatement ps=conexion.prepareStatement(sql);
         ps.setString(1,idVenta);
         for(int i=0;i<articulos.size();i++){
             ps.setString(2,idProductos.get(i).toString());
+            ps.setString(3,((Object[])articulos.get(i))[1].toString());
             ps.executeUpdate();
         }
     } 
@@ -569,5 +595,23 @@ public class SQL {
         }catch(NullPointerException e){total=0;}
         catch(SQLException ex){ex.printStackTrace();}
         return total;
+    }
+    
+    public ArrayList getVentaProductos(String idVenta)throws Exception{
+        ArrayList productos=new ArrayList();
+        String sql="SELECT productos.codigo_de_barras,productos.articulo,ventaproductos.cantidad FROM productos"
+                +" INNER JOIN ventaproductos ON ventaproductos.idProducto=productos.idProducto"
+                + " WHERE ventaproductos.idVenta="+idVenta+";";
+        Statement s=conexion.createStatement();
+        ResultSet rs=s.executeQuery(sql);
+        while(rs.next()){
+            Object[] fila=new Object[]{
+                rs.getString("codigo_de_barras"),
+                rs.getString("articulo"),
+                rs.getString("cantidad")
+            };
+            productos.add(fila);
+        }
+        return productos;
     }
 }

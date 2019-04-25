@@ -30,6 +30,7 @@ public class Venta extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.WHITE);
         calcular(total,pago);
         setVisible(true);
+        btnAceptar.requestFocus();
     }
     
     private void calcular(double total,double pago){
